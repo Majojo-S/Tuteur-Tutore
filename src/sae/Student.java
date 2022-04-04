@@ -4,6 +4,8 @@ package sae;
  * Project C-G3
  *
  * @author quentin.barlet.etu
+ * @author simon.bocquet.etu
+ * @author marine.sandras.etu
  * The 04 of avril 2022
  */
 public class Student {
