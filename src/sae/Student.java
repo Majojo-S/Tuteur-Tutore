@@ -34,12 +34,11 @@ public class Student {
      */
     public Student(String firstName, String lastName, int studyLevel) {
 
-        if (0 == firstName.length() || 0 == lastName.length()) return;
-        if (studyLevel < 0) return;
+        this.firstName = 0 == firstName.length() ? "john" : firstName;
+        this.lastName = 0 == lastName.length() ? "doe" : lastName;
 
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.studyLevel = studyLevel;
+        this.studyLevel = (studyLevel <= 0) ? 1 : studyLevel;
+
         this.absence = 0;
     }
 
