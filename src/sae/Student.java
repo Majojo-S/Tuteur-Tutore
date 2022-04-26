@@ -6,7 +6,6 @@ package sae;
  * @author quentin.barlet.etu
  * @author simon.bocquet.etu
  * @author marine.sandras.etu
- * The 04 of avril 2022
  */
 public class Student extends Person{
 
@@ -37,19 +36,42 @@ public class Student extends Person{
         this.absence = 0;
     }
 
+    /**
+     * Get the Study Level
+     * @return int
+     */
     public int getStudyLevel() {
         return studyLevel;
     }
 
+    /**
+     * Set a new Study Level 
+     * @param studyLevel int
+     */
     public void setStudyLevel(int studyLevel) {
         this.studyLevel = studyLevel;
     }
 
+    /**
+     * Get the number of Absence
+     * @return int
+     */
     public int getAbsence() {
         return absence;
     }
 
-    public void setAbsence(int absence) {
-        this.absence = absence;
+    /**
+     * Add an Hour of absence
+     */
+    public void addAbsence() {
+    	absence++;
+    }
+    
+    /**
+     * Add n hours of absence
+     * @param absence int
+     */
+    public void addAbsence(int absence) {
+    	this.absence += absence;
     }
 }
