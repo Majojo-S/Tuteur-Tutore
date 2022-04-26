@@ -8,10 +8,8 @@ package sae;
  * @author marine.sandras.etu
  * The 04 of avril 2022
  */
-public class Student {
+public class Student extends Person{
 
-    private String lastName;
-    private String firstName;
     private int studyLevel;
     private int absence;
 
@@ -33,29 +31,10 @@ public class Student {
      * @param studyLevel int
      */
     public Student(String firstName, String lastName, int studyLevel) {
-
-        this.firstName = 0 == firstName.length() ? "john" : firstName;
-        this.lastName = 0 == lastName.length() ? "doe" : lastName;
-
+    	super(firstName, lastName);
         this.studyLevel = (studyLevel <= 0) ? 1 : studyLevel;
 
         this.absence = 0;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public int getStudyLevel() {
