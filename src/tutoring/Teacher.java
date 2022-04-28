@@ -17,9 +17,9 @@ public class Teacher extends Person {
     /**
      * Create New Teacher with multiple resources
      *
-     * @param firstName String
-     * @param lastName  String
-     * @param resource  List<Resource>
+     * @param First name of teacher
+     * @param Last name of teacher
+     * @param List of resource of the teacherr
      */
     public Teacher(String firstName, String lastName, List<Resource> resource) {
         super(firstName, lastName);
@@ -29,9 +29,9 @@ public class Teacher extends Person {
     /**
      * Create new Teacher with 1 ressource
      *
-     * @param firstName String
-     * @param lastName  String
-     * @param ressource Ressource
+     * @param First name of teacher
+     * @param Last name of teacher
+     * @param resource of teacher
      */
     public Teacher(String firstName, String lastName, Resource ressource) {
         super(firstName, lastName);
@@ -42,7 +42,7 @@ public class Teacher extends Person {
     /**
      * Return a list of resources that the teacher teach
      *
-     * @return Resource
+     * @return list of resource of teacher
      */
     public List<Resource> getResources() {
         return resources;
