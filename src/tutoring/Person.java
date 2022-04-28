@@ -1,25 +1,25 @@
-package sae;
+package tutoring;
 
 public class Person {
-	private String firstName;
-	private String lastName;
 
-	public Person(String fn, String ln) {
-		firstName = fn == null ? "" : fn;
-		lastName = ln == null ? "" : ln;
-	}
+    private final String firstName;
+    private String lastName;
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public Person(String fn, String ln) {
+        firstName = fn == null ? "" : fn;
+        lastName = ln == null ? "" : ln;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setLastName(String ln) {
-		if (ln != null && ln.length() > 0)
-			lastName = ln;
-	}
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String ln) {
+        if (ln != null && ln.length() > 0) lastName = ln;
+    }
 
 }

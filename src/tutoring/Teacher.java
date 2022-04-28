@@ -1,9 +1,8 @@
-package teacher;
+package tutoring;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import sae.Person;
-import sae.Ressource;
 /**
  * Project C-G3
  *
@@ -12,56 +11,59 @@ import sae.Ressource;
  * @author marine.sandras.etu
  */
 public class Teacher extends Person {
-	
-	List<Ressource> ressources;
-	
+
+    List<Resource> resources;
+
     /**
-     * Create New Teacher with multiple ressources
+     * Create New Teacher with multiple resources
+     *
      * @param firstName String
      * @param lastName  String
-     * @param ressource List<Ressource>
+     * @param resource  List<Resource>
      */
-    public Teacher(String firstName, String lastName, List<Ressource> ressource) {
-    	super(firstName, lastName);
-    	this.ressources = ressource;
+    public Teacher(String firstName, String lastName, List<Resource> resource) {
+        super(firstName, lastName);
+        this.resources = resource;
     }
 
-    
     /**
      * Create new Teacher with 1 ressource
+     *
      * @param firstName String
-     * @param lastName String
+     * @param lastName  String
      * @param ressource Ressource
      */
-    public Teacher(String firstName, String lastName, Ressource ressource) {
-    	super(firstName, lastName);
-    	ressources = new ArrayList<>();
-    	ressources.add(ressource);
+    public Teacher(String firstName, String lastName, Resource ressource) {
+        super(firstName, lastName);
+        resources = new ArrayList<>();
+        resources.add(ressource);
     }
-    
+
     /**
-     * Get ressource
-     * @return Ressource
+     * Return a list of resources that the teacher teach
+     *
+     * @return Resource
      */
-	public List<Ressource> getRessources() {
-		return ressources;
-	}
-
-	/**
-	 * Set new Ressources
-	 * @param ressource Ressource
-	 */
-	public void setRessources(List<Ressource> ressources) {
-		this.ressources = ressources;
-	}
-
-	/**
-	 * Add a new Ressource
-	 * @param ressource
-	 */
-    public void addRessource(String ressource) {
-    	if(Ressource.valueOf(ressource)!=null)
-    		ressources.add(Ressource.valueOf(ressource));
+    public List<Resource> getResources() {
+        return resources;
     }
-    
+
+    /**
+     * Set the list of resources the teacher can teach
+     *
+     * @param resources Resource
+     */
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
+    }
+
+    /**
+     * Add a new Resource
+     *
+     * @param resource String
+     */
+    public void addResource(String resource) {
+        if (Resource.valueOf(resource) != null) resources.add(Resource.valueOf(resource));
+    }
+
 }

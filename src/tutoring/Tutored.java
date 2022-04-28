@@ -1,24 +1,23 @@
-package sae;
+package tutoring;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Tutored extends Student {
-	List<Ressource> ressources;
-	
-	
-	public Tutored(String fn, String ln) {
-		super(fn,ln,1);
-		ressources = new ArrayList<>();
-	}
-	
-	public List<Ressource> getRessources() {
-		return ressources;
-	}
-	public void setRessources(List<Ressource> ressources) {
-		this.ressources = ressources;
-	}
-	
-	
-	
+
+    List<Resource> resources;
+
+    public Tutored(String fn, String ln) {
+        super(fn, ln, 1);
+        resources = new ArrayList<>();
+    }
+
+    public List<Resource> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
+    }
+
 }

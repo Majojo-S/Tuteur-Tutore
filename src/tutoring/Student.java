@@ -1,4 +1,4 @@
-package sae;
+package tutoring;
 
 /**
  * Project C-G3
@@ -7,7 +7,7 @@ package sae;
  * @author simon.bocquet.etu
  * @author marine.sandras.etu
  */
-public class Student extends Person{
+public class Student extends Person {
 
     private int studyLevel;
     private int absence;
@@ -30,7 +30,7 @@ public class Student extends Person{
      * @param studyLevel int
      */
     public Student(String firstName, String lastName, int studyLevel) {
-    	super(firstName, lastName);
+        super(firstName, lastName);
         this.studyLevel = (studyLevel <= 0) ? 1 : studyLevel;
 
         this.absence = 0;
@@ -38,6 +38,7 @@ public class Student extends Person{
 
     /**
      * Get the Study Level
+     *
      * @return int
      */
     public int getStudyLevel() {
@@ -45,7 +46,8 @@ public class Student extends Person{
     }
 
     /**
-     * Set a new Study Level 
+     * Set a new Study Level
+     *
      * @param studyLevel int
      */
     public void setStudyLevel(int studyLevel) {
@@ -54,6 +56,7 @@ public class Student extends Person{
 
     /**
      * Get the number of Absence
+     *
      * @return int
      */
     public int getAbsence() {
@@ -64,14 +67,15 @@ public class Student extends Person{
      * Add an Hour of absence
      */
     public void addAbsence() {
-    	absence++;
+        absence++;
     }
-    
+
     /**
      * Add n hours of absence
+     *
      * @param absence int
      */
     public void addAbsence(int absence) {
-    	this.absence += absence;
+        this.absence += absence;
     }
 }
