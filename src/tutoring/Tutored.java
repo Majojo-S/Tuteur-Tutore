@@ -23,6 +23,17 @@ public class Tutored extends Student {
         super(fn, ln, 1);
         resources = new ArrayList<>();
     }
+    
+    /**
+     * Created a Tutored Student with a resource
+     * @param fn
+     * @param ln
+     * @param r
+     */
+    public Tutored(String fn, String ln, Resource r) {
+        this(fn,ln);
+        this.resources.add(r);
+    }
 
     /**
      * Get List of resources
