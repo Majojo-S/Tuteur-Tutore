@@ -1,5 +1,8 @@
 package tutoring;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Project C-G3
  *
@@ -11,6 +14,7 @@ public class Student extends Person {
 
 	private int studyLevel;
 	private int absence;
+	private Map<Resource, Double> grades;
 
 	/**
 	 * Complete constructor with level parameter
@@ -23,6 +27,7 @@ public class Student extends Person {
 		super(firstName, lastName);
 		this.studyLevel = (studyLevel <= 0) ? 1 : studyLevel;
 		this.absence = 0;
+		grades = new HashMap<>();
 	}
 
 	/**
@@ -76,5 +81,10 @@ public class Student extends Person {
 	 */
 	public void addAbsence(int absence) {
 		this.absence += absence;
+	}
+	
+	public void addGrade(Resource resource, double grade) {
+		if(resource != null && (grade>=0 && grade<=20))
+			grades.put(resource, grade);
 	}
 }
