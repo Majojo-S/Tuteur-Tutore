@@ -1,6 +1,7 @@
 package tutoring;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -83,8 +84,34 @@ public class Student extends Person {
 		this.absence += absence;
 	}
 	
+	/**
+	 * Add a grade	
+	 * @param resource
+	 * @param grade
+	 */
 	public void addGrade(Resource resource, double grade) {
 		if(resource != null && (grade>=0 && grade<=20))
 			grades.put(resource, grade);
+	}
+	
+	/**
+	 * get average for a resource
+	 * @param r
+	 * @return average for a resource
+	 */
+	public double getAverage(Resource r) {
+		return grades.get(r);
+	}
+	
+	/**
+	 * get overall average
+	 * @return overall average
+	 */
+	public double getOverallAverage() {
+		double res = 0;
+		for (double truc : grades.values()) {
+			res+=truc;
+		}
+		return res/grades.size();
 	}
 }
