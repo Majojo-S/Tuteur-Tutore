@@ -63,7 +63,10 @@ public class Teacher extends Person {
      * @param resource String
      */
     public void addResource(String resource) {
-        if (Resource.valueOf(resource) != null) resources.add(Resource.valueOf(resource));
+    	for (Resource r : Resource.values()) {
+    		if(r.name().equals(resource.toUpperCase()))
+    			resources.add(r);
+		}
     }
 
 }
