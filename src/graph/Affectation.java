@@ -37,11 +37,14 @@ public class Affectation {
 
 	private static void justifyTaille(GrapheNonOrienteValue<Student> g) {
 		if (tutor.size() < tutored.size()) {
-			// rajouter en double tutor 3e annÃ©e jusqu'Ã  atteindre la taille de tutored
+			// rajouter en double tutor 3e annÃ©e jusqu'Ã  atteindre la taille de
+			// tutored
 			for (int i = tutor.size() - 1; i < tutored.size(); ++i) {
 				for (Student s : list) {
 					if (s.getStudyLevel() == 3) {
-						tutor.add(s);
+						Tutor n = new Tutor(s.getFirstName() + "2", s.getLastName(), 3);
+						n.addGrade(Resource.BDD, s.getAverage(Resource.BDD));
+						tutor.add(n);
 					}
 					break;
 				}
@@ -57,23 +60,29 @@ public class Affectation {
 
 	private static GrapheNonOrienteValue<Student> createGraph() {
 		GrapheNonOrienteValue<Student> graph = new GrapheNonOrienteValue<Student>();
-		
-		for (int i = 0; i < list.size(); ++i)
-			graph.ajouterSommet(list.get(i));
 		justifyTaille(graph);
-		doTheArete(graph,tutor,tutored);		
+		addSommet(graph);
+		doTheArete(graph, tutor, tutored);
 		return graph;
 	}
-	
-	private void doTheArete(GrapheNonOrienteValue<Student> graph,ArrayList<Student> t, ArrayList<Student> td) {
-		for (int t = 0; t < tutor.size(); ++t) {
-			for (int td = 0; td < tutored.size(); ++td) {
-				if(tutored.getName.equals("null")) {
-					graph.ajouterArete(tutor.get(t), tutored.get(td), 30);
-				}else {
-					graph.ajouterArete(tutor.get(t), tutored.get(td),
-						makeWeigth((Tutor) tutor.get(t), (Tutored) tutored.get(td)));
-			
+
+	private static void addSommet(GrapheNonOrienteValue<Student> graph) {
+		for (int i = 0; i < tutor.size(); ++i)
+			graph.ajouterSommet(tutor.get(i));
+		for (int i = 0; i < tutored.size(); ++i)
+			graph.ajouterSommet(tutored.get(i));
+
+	}
+
+	private static void doTheArete(GrapheNonOrienteValue<Student> graph, ArrayList<Student> t, ArrayList<Student> td) {
+		for (int i = 0; i < tutor.size(); ++i) {
+			for (int j = 0; j < tutored.size(); ++j) {
+				if (tutored.get(j).getFirstName().equals("null")) {
+					graph.ajouterArete(tutor.get(i), tutored.get(j), 30);
+				} else {
+					graph.ajouterArete(tutor.get(i), tutored.get(j),
+							makeWeigth((Tutor) tutor.get(i), (Tutored) tutored.get(j)));
+
 				}
 			}
 		}
