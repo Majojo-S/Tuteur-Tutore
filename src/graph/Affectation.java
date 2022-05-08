@@ -37,48 +37,46 @@ public class Affectation {
 
 	private static void justifyTaille(GrapheNonOrienteValue<Student> g) {
 		if (tutor.size() < tutored.size()) {
-			// rajouter en double tutor 3e année jusqu'à atteindre la taille de tutored
+			// rajouter en double tutor 3e annÃ©e jusqu'Ã  atteindre la taille de tutored
 			for (int i = tutor.size() - 1; i < tutored.size(); ++i) {
 				for (Student s : list) {
 					if (s.getStudyLevel() == 3) {
 						tutor.add(s);
-						for (int t = 0; t < tutor.size(); ++t) {
-							for (int td = 0; td < tutored.size(); ++td) {
-								g.ajouterArete(tutor.get(t), tutored.get(td),
-										makeWeigth((Tutor) tutor.get(t), (Tutored) tutored.get(td)));
-							}
-						}
 					}
 					break;
 				}
 			}
 		} else if (tutored.size() < tutor.size()) {
-			// rajouter des tutored null avec poid énorme
+			// rajouter des tutored null avec poid Ã©norme
 			for (int i = tutored.size(); i < tutor.size(); ++i) {
 				Tutored s = new Tutored("null", "null");
 				tutored.add(s);
-				for (int t = 0; t < tutor.size(); ++t) {
-					for (int td = 0; td < tutored.size(); ++td) {
-						g.ajouterArete(tutor.get(t), tutored.get(td), 30);
-					}
-				}
 			}
 		}
 	}
 
 	private static GrapheNonOrienteValue<Student> createGraph() {
 		GrapheNonOrienteValue<Student> graph = new GrapheNonOrienteValue<Student>();
+		
 		for (int i = 0; i < list.size(); ++i)
 			graph.ajouterSommet(list.get(i));
+		justifyTaille(graph);
+		doTheArete(graph,tutor,tutored);		
+		return graph;
+	}
+	
+	private void doTheArete(GrapheNonOrienteValue<Student> graph,ArrayList<Student> t, ArrayList<Student> td) {
 		for (int t = 0; t < tutor.size(); ++t) {
 			for (int td = 0; td < tutored.size(); ++td) {
-				graph.ajouterArete(tutor.get(t), tutored.get(td),
+				if(tutored.getName.equals("null")) {
+					graph.ajouterArete(tutor.get(t), tutored.get(td), 30);
+				}else {
+					graph.ajouterArete(tutor.get(t), tutored.get(td),
 						makeWeigth((Tutor) tutor.get(t), (Tutored) tutored.get(td)));
+			
+				}
 			}
 		}
-
-		justifyTaille(graph);
-		return graph;
 	}
 
 	private static double makeWeigth(Tutor t, Tutored td) {
