@@ -1,5 +1,6 @@
 package tutoring;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.Map;
  */
 public class Student extends Person {
 
+    public static ArrayList<Student> students = new ArrayList<>();
     private int studyLevel;
     private int absence;
     private final Map<Resource, Double> grades;
@@ -20,9 +22,9 @@ public class Student extends Person {
     /**
      * Complete constructor with level parameter
      *
-     * @param First name of Student
-     * @param Last  name of Student
-     * @param Study level of Student
+     * @param firstName  first name of Student
+     * @param lastName   last name of Student
+     * @param studyLevel study level of Student
      */
     public Student(String firstName, String lastName, int studyLevel) {
         super(firstName, lastName);
@@ -34,8 +36,8 @@ public class Student extends Person {
     /**
      * Default constructor
      *
-     * @param First name of Student
-     * @param Last  name of Student
+     * @param firstName first name of Student
+     * @param lastName  last name of Student
      */
     public Student(String firstName, String lastName) {
         this(firstName, lastName, 1);
@@ -53,7 +55,7 @@ public class Student extends Person {
     /**
      * Set a new Study Level
      *
-     * @param Study level of Student
+     * @param studyLevel study level of Student
      */
     public void setStudyLevel(int studyLevel) {
         this.studyLevel = studyLevel;
@@ -87,8 +89,8 @@ public class Student extends Person {
     /**
      * Add a grade
      *
-     * @param resource
-     * @param grade
+     * @param resource resource of the grade
+     * @param grade    average of the student
      */
     public void addGrade(Resource resource, double grade) {
         if (resource != null && (grade >= 0 && grade <= 20)) grades.put(resource, grade);
@@ -97,11 +99,11 @@ public class Student extends Person {
     /**
      * get average for a resource
      *
-     * @param r
+     * @param resource Resource
      * @return average for a resource
      */
-    public double getAverage(Resource r) {
-        return grades.get(r);
+    public double getAverage(Resource resource) {
+        return grades.get(resource);
     }
 
     /**

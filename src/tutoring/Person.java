@@ -15,12 +15,12 @@ public class Person {
     /**
      * Constructor
      *
-     * @param First name of person
-     * @param Last  name of person
+     * @param firstName first name of person
+     * @param lastName  last name of person
      */
-    public Person(String fn, String ln) {
-        firstName = fn == null ? "" : fn;
-        lastName = ln == null ? "" : ln;
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName == null ? "" : firstName;
+        this.lastName = lastName == null ? "" : lastName;
     }
 
     /**
@@ -44,14 +44,14 @@ public class Person {
     /**
      * Set Last Name of person
      *
-     * @param Last name of person
+     * @param lastName name of person
      */
-    public void setLastName(String ln) {
-        if (ln != null && ln.length() > 0) lastName = ln;
+    public void setLastName(String lastName) {
+        if (lastName != null && lastName.length() > 0) this.lastName = lastName;
     }
 
     @Override
     public String toString() {
-        return  firstName + " : " + lastName;
+        return firstName + " : " + lastName;
     }
 }

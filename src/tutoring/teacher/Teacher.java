@@ -3,6 +3,7 @@ package tutoring.teacher;
 import tutoring.Person;
 import tutoring.Resource;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,32 +16,34 @@ import java.util.List;
  */
 public class Teacher extends Person {
 
-    List<Resource> resources;
-
-    /**
-     * Create New Teacher with multiple resources
-     *
-     * @param First name of teacher
-     * @param Last name of teacher
-     * @param List of resource of the teacherr
-     */
-    public Teacher(String firstName, String lastName, List<Resource> resource) {
-        super(firstName, lastName);
-        this.resources = resource;
-    }
+    public static ArrayList<Teacher> teachers = new ArrayList<>();
+    private List<Resource> resources;
 
     /**
      * Create new Teacher with 1 ressource
      *
-     * @param First name of teacher
-     * @param Last name of teacher
-     * @param resource of teacher
+     * @param firstName name of teacher
+     * @param lastName  name of teacher
+     * @param resource  of teacher
      */
-    public Teacher(String firstName, String lastName, Resource ressource) {
+    public Teacher(String firstName, String lastName, Resource resource) {
         super(firstName, lastName);
         resources = new ArrayList<>();
-        resources.add(ressource);
+        resources.add(resource);
     }
+
+    /**
+     * Create New Teacher with multiple resources
+     *
+     * @param firstName name of teacher
+     * @param lastName  name of teacher
+     * @param resources of resource of the teacherr
+     */
+    public Teacher(String firstName, String lastName, List<Resource> resources) {
+        super(firstName, lastName);
+        this.resources = resources;
+    }
+
 
     /**
      * Return a list of resources that the teacher teach
@@ -66,10 +69,9 @@ public class Teacher extends Person {
      * @param resource String
      */
     public void addResource(String resource) {
-    	for (Resource r : Resource.values()) {
-    		if(r.name().equals(resource.toUpperCase()))
-    			resources.add(r);
-		}
+        for (Resource r : Resource.values()) {
+            if (r.name().equals(resource.toUpperCase())) resources.add(r);
+        }
     }
 
 }
