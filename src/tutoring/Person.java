@@ -14,9 +14,9 @@ public class Person {
 
     /**
      * Constructor
-     * 
+     *
      * @param First name of person
-     * @param Last name of person
+     * @param Last  name of person
      */
     public Person(String fn, String ln) {
         firstName = fn == null ? "" : fn;
@@ -25,6 +25,7 @@ public class Person {
 
     /**
      * Get the First Name of person
+     *
      * @return First name of person
      */
     public String getFirstName() {
@@ -33,6 +34,7 @@ public class Person {
 
     /**
      * Get the Last Name of person
+     *
      * @return Last name of person
      */
     public String getLastName() {
@@ -41,10 +43,15 @@ public class Person {
 
     /**
      * Set Last Name of person
+     *
      * @param Last name of person
      */
     public void setLastName(String ln) {
         if (ln != null && ln.length() > 0) lastName = ln;
     }
 
+    @Override
+    public String toString() {
+        return  firstName + " : " + lastName;
+    }
 }
