@@ -6,13 +6,13 @@ import fr.ulille.but.sae2_02.graphes.CalculAffectation;
 import fr.ulille.but.sae2_02.graphes.GrapheNonOrienteValue;
 import tutoring.Resource;
 import tutoring.Student;
-import tutoring.Tutor;
-import tutoring.Tutored;
+import tutoring.tutor.Tutor;
+import tutoring.tutored.Tutored;
 
 public class Affectation {
 
-	private static ArrayList<Student> tutor = new ArrayList<Student>();
-	private static ArrayList<Student> tutored = new ArrayList<Student>();
+	private static final ArrayList<Student> tutor = new ArrayList<Student>();
+	private static final ArrayList<Student> tutored = new ArrayList<Student>();
 	static ArrayList<Student> list = init();
 
 	public static void main(String[] args) {

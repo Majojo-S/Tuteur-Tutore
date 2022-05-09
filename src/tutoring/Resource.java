@@ -12,7 +12,7 @@ public enum Resource {
 
     final int limit;
 
-    private Resource(int n) {
+    Resource(int n) {
         limit = n;
     }
 }

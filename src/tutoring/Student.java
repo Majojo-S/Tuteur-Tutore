@@ -15,7 +15,7 @@ public class Student extends Person {
 
     private int studyLevel;
     private int absence;
-    private Map<Resource, Double> grades;
+    private final Map<Resource, Double> grades;
 
     /**
      * Complete constructor with level parameter

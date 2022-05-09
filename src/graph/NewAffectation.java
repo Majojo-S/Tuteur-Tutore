@@ -9,13 +9,13 @@ import fr.ulille.but.sae2_02.graphes.CalculAffectation;
 import fr.ulille.but.sae2_02.graphes.GrapheNonOrienteValue;
 import tutoring.Resource;
 import tutoring.Student;
-import tutoring.Tutor;
-import tutoring.Tutored;
+import tutoring.tutor.Tutor;
+import tutoring.tutored.Tutored;
 
 public class NewAffectation {
 
-	private static ArrayList<Student> tutors = new ArrayList<>();
-	private static ArrayList<Student> tutored = new ArrayList<>();
+	private static final ArrayList<Student> tutors = new ArrayList<>();
+	private static final ArrayList<Student> tutored = new ArrayList<>();
 	static ArrayList<Student> data = init();
 
 	public static void main(String[] args) {
