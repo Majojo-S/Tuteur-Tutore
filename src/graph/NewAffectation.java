@@ -85,6 +85,9 @@ public class NewAffectation {
 			for (Student student : tutored) {
 				if (student.getFirstName().equals("null")) {
 					graph.ajouterArete(tutor, student, 30);
+				} else if (tutor.getFirstName().equals("D") && student.getFirstName().equals("Q")
+						|| tutor.getFirstName().equals("E") && student.getFirstName().equals("N")) {
+					graph.ajouterArete(tutor, student, 0);
 				} else {
 					graph.ajouterArete(tutor, student, calculateNodeWeight((Tutor) tutor, (Tutored) student));
 
@@ -140,8 +143,6 @@ public class NewAffectation {
 		P.addGrade(matiere, 6.5);
 		Tutored Q = new Tutored("Q", "Q", matiere);
 		Q.addGrade(matiere, 8.9);
-		Tutored R = new Tutored("R", "R", matiere);
-		R.addGrade(matiere, 11.0);
 
 		data.add(A);
 		data.add(B);
@@ -154,14 +155,9 @@ public class NewAffectation {
 		data.add(N);
 		data.add(Q);
 		data.add(P);
-		data.add(R);
 		data.add(O);
 
 		return data;
 	}
 
-	private static void printList(ArrayList<Student> l) {
-		for (Student s : l)
-			System.out.println(l);
-	}
 }
