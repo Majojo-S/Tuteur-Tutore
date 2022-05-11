@@ -1,3 +1,9 @@
+import fr.ulille.but.sae2_02.graphes.CalculAffectation;
+import fr.ulille.but.sae2_02.graphes.GrapheNonOrienteValue;
+import graph.DataGenerator;
+import graph.GraphGenerator;
+import tutoring.Student;
+
 /**
  * Project C-G3
  *
@@ -9,6 +15,16 @@
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World !");
+
+        GrapheNonOrienteValue<Student> graph = createGraph();
+        System.out.println(DataGenerator.tutors.size());
+        System.out.println(DataGenerator.tutored.size());
+
+        CalculAffectation<Student> result = new CalculAffectation<>(graph, DataGenerator.tutors, DataGenerator.tutored);
+        System.out.println(result.getAffectation());
+    }
+
+    private static GrapheNonOrienteValue<Student> createGraph() {
+        return GraphGenerator.createGraph();
     }
 }
