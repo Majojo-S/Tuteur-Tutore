@@ -14,7 +14,6 @@ public class Person {
 
     /**
      * Constructor
-     *
      * @param firstName First name of person
      * @param lastName Last name of person
      */
@@ -43,7 +42,6 @@ public class Person {
 
     /**
      * Set Last Name of person
-     *
      * @param lastName Last name of person
      */
     public void setLastName(String lastName) {
@@ -52,6 +50,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return  firstName + " : " + lastName;
+        return firstName + " : " + lastName;
     }
 }

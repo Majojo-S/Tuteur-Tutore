@@ -1,5 +1,6 @@
 package tutoring;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,13 +13,13 @@ import java.util.Map;
  */
 public class Student extends Person {
 
+    public static ArrayList<Student> students = new ArrayList<>();
     private int studyLevel;
     private int absence;
-    private Map<Resource, Double> grades;
+    private final Map<Resource, Double> grades;
 
     /**
      * Complete constructor with level parameter
-     *
      * @param firstName First name of Student
      * @param lastName Last name of Student
      * @param studyLevel Study level of Student
@@ -42,7 +43,7 @@ public class Student extends Person {
 
     /**
      * Get the Study Level
-     *
+     * 
      * @return Study level of Student
      */
     public int getStudyLevel() {
@@ -51,7 +52,7 @@ public class Student extends Person {
 
     /**
      * Set a new Study Level
-     *
+     * 
      * @param studyLevel Study level of Student
      */
     public void setStudyLevel(int studyLevel) {

@@ -1,4 +1,7 @@
-package tutoring;
+package tutoring.tutored;
+
+import tutoring.Resource;
+import tutoring.Student;
 
 import java.util.ArrayList;
 import java.util.List;

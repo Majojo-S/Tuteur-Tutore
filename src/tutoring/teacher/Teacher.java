@@ -1,7 +1,10 @@
-package tutoring;
+package tutoring.teacher;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import tutoring.Person;
+import tutoring.Resource;
 
 /**
  * A teacher is the same as a person with a list of resources
@@ -12,19 +15,8 @@ import java.util.List;
  */
 public class Teacher extends Person {
 
-    List<Resource> resources;
-
-    /**
-     * Create New Teacher with multiple resources
-     *
-     * @param firstName First name of teacher
-     * @param lastName Last name of teacher
-     * @param resources List of resource of the teacher
-     */
-    public Teacher(String firstName, String lastName, List<Resource> resources) {
-        super(firstName, lastName);
-        this.resources = resources;
-    }
+    public static ArrayList<Teacher> teachers = new ArrayList<>();
+    private List<Resource> resources;
 
     /**
      * Create new Teacher with 1 resource
@@ -38,6 +30,19 @@ public class Teacher extends Person {
         resources = new ArrayList<>();
         resources.add(resource);
     }
+
+    /**
+     * Create New Teacher with multiple resources
+     *
+     * @param firstName name of teacher
+     * @param lastName  name of teacher
+     * @param resources of resource of the teacher
+     */
+    public Teacher(String firstName, String lastName, List<Resource> resources) {
+        super(firstName, lastName);
+        this.resources = resources;
+    }
+
 
     /**
      * Return a list of resources that the teacher teach

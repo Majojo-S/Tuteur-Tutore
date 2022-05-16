@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import tutoring.teacher.Teacher;
 
 /**
  * Tests for teacher
@@ -19,7 +20,7 @@ public class TeacherTest {
 
 	private Teacher t1, t2;
 	private List<Resource> listR1, listR2;
-	
+
 	/**
 	 * Initialize teachers for each tests
 	 */
@@ -35,7 +36,7 @@ public class TeacherTest {
 	}
 
 	/**
-	 * Test the initialization 
+	 * Test the initialization
 	 */
 	@Test
 	void initTest() {
@@ -44,27 +45,27 @@ public class TeacherTest {
 		assertEquals("B", t2.getFirstName());
 		assertEquals("B", t2.getLastName());
 	}
-	
+
 	/**
-	 * Test the getResource method 
+	 * Test the getResource method
 	 */
 	@Test
 	void getResourceTest() {
 		assertEquals(listR1, t2.getResources());
 		assertEquals(listR2, t1.getResources());
 	}
-	
+
 	/**
 	 * Test the setResource method
 	 */
-	@Test 
+	@Test
 	void setResourceTest() {
 		assertEquals(listR1, t2.getResources());
 		t2.setResources(listR1);
 		assertEquals(listR1, t2.getResources());
 		t1.setResources(listR2);
 	}
-	
+
 	/**
 	 * Test adding resource to teacher
 	 */
@@ -75,6 +76,4 @@ public class TeacherTest {
 		t1.addResource("notExists");
 		assertEquals(listR1, t1.getResources());
 	}
-	
-	
 }

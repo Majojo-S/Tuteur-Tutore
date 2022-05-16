@@ -8,11 +8,13 @@ package tutoring;
  * @author marine.sandras.etu
  */
 public enum Resource {
-    BDD(10), ALGO(5), MATHS(8);
+    BDD("Base de donnée", 30), ALGO("Algorithmie", 30), SYSTEM("Système", 30);
 
+    final String name;
     final int limit;
 
-    private Resource(int limit) {
+    Resource(String name, int limit) {
+        this.name = name;
         this.limit = limit;
     }
 }

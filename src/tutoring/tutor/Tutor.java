@@ -1,4 +1,8 @@
-package tutoring;
+package tutoring.tutor;
+
+import tutoring.Resource;
+import tutoring.Student;
+import tutoring.tutored.Tutored;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +16,7 @@ import java.util.List;
  */
 public class Tutor extends Student {
 
+    public static ArrayList<Student> tutors = new ArrayList<>();
     private List<Tutored> tutored;
     private Resource resource;
     
@@ -49,8 +54,9 @@ public class Tutor extends Student {
 
     /**
      * Constructor with first name and last name of tutor
-     * @param firstName
-     * @param lastName
+     *
+     * @param firstName first name
+     * @param lastName  last name
      */
     public Tutor(String firstName, String lastName) {
         this(firstName, lastName, 2, null);
@@ -58,6 +64,7 @@ public class Tutor extends Student {
 
     /**
      * Get list of tutored student for this tutor
+     *
      * @return list of student to be tutored
      */
     public List<Tutored> getTutored() {
@@ -83,11 +90,11 @@ public class Tutor extends Student {
     /**
      * Set resource of tutor
      * @param resource Resource of tutor
-     */
+	*/
     public void setResource(Resource resource) {
         this.resource = resource;
     }
-    
+
     /**
      * Add a tutored to list of student to be tutored
      * @param tutoredStudent tutored Student
@@ -95,5 +102,4 @@ public class Tutor extends Student {
     public void addTutored(Tutored tutoredStudent) {
     	tutored.add(tutoredStudent);
     }
-    
 }
