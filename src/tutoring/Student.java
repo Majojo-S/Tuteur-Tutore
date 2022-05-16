@@ -1,11 +1,10 @@
 package tutoring;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
- * Project C-G3
+ * A student is the same as a person with a number of absences, a study level and grades
  *
  * @author quentin.barlet.etu
  * @author simon.bocquet.etu
@@ -20,9 +19,9 @@ public class Student extends Person {
     /**
      * Complete constructor with level parameter
      *
-     * @param First name of Student
-     * @param Last  name of Student
-     * @param Study level of Student
+     * @param firstName First name of Student
+     * @param lastName Last name of Student
+     * @param studyLevel Study level of Student
      */
     public Student(String firstName, String lastName, int studyLevel) {
         super(firstName, lastName);
@@ -34,8 +33,8 @@ public class Student extends Person {
     /**
      * Default constructor
      *
-     * @param First name of Student
-     * @param Last  name of Student
+     * @param firstName First name of Student
+     * @param lastName Last name of Student
      */
     public Student(String firstName, String lastName) {
         this(firstName, lastName, 1);
@@ -53,7 +52,7 @@ public class Student extends Person {
     /**
      * Set a new Study Level
      *
-     * @param Study level of Student
+     * @param studyLevel Study level of Student
      */
     public void setStudyLevel(int studyLevel) {
         this.studyLevel = studyLevel;
@@ -78,34 +77,34 @@ public class Student extends Person {
     /**
      * Add n hours of absence
      *
-     * @param absence int
+     * @param absence Number of absences to add
      */
     public void addAbsence(int absence) {
         this.absence += absence;
     }
 
     /**
-     * Add a grade
+     * Add a grade for a specific resource
      *
-     * @param resource
-     * @param grade
+     * @param resource Resource to add a grade to
+     * @param grade A grade
      */
     public void addGrade(Resource resource, double grade) {
         if (resource != null && (grade >= 0 && grade <= 20)) grades.put(resource, grade);
     }
 
     /**
-     * get average for a resource
+     * Get average for a resource
      *
-     * @param r
+     * @param resource Resource to get the average grade
      * @return average for a resource
      */
-    public double getAverage(Resource r) {
-        return grades.get(r);
+    public double getAverage(Resource resource) {
+        return grades.get(resource);
     }
 
     /**
-     * get overall average
+     * Get overall average
      *
      * @return overall average
      */
@@ -117,14 +116,20 @@ public class Student extends Person {
         return res / grades.size();
     }
 
+    /**
+     * Print all grades 
+     */
     public void printGrades() {
         for (Map.Entry<Resource, Double> item : grades.entrySet()) {
             System.out.println("- " + item.getKey() + " : " + item.getValue());
         }
     }
 
+    /**
+     * Print student's first and last name
+     */
     @Override
     public String toString() {
-        return "Student: " + super.toString();
+        return "Student( " + super.toString() + ")";
     }
 }

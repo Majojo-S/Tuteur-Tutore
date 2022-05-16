@@ -1,7 +1,7 @@
 package tutoring;
 
 /**
- * Project C-G3
+ * Person characterized by it's first and last name 
  *
  * @author quentin.barlet.etu
  * @author simon.bocquet.etu
@@ -15,12 +15,12 @@ public class Person {
     /**
      * Constructor
      *
-     * @param First name of person
-     * @param Last  name of person
+     * @param firstName First name of person
+     * @param lastName Last name of person
      */
-    public Person(String fn, String ln) {
-        firstName = fn == null ? "" : fn;
-        lastName = ln == null ? "" : ln;
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName == null ? "" : firstName;
+        this.lastName = lastName == null ? "" : lastName;
     }
 
     /**
@@ -44,10 +44,10 @@ public class Person {
     /**
      * Set Last Name of person
      *
-     * @param Last name of person
+     * @param lastName Last name of person
      */
-    public void setLastName(String ln) {
-        if (ln != null && ln.length() > 0) lastName = ln;
+    public void setLastName(String lastName) {
+        if (lastName != null && lastName.length() > 0) this.lastName = lastName;
     }
 
     @Override

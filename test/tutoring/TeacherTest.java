@@ -8,11 +8,21 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class TeacherTest {
+/**
+ * Tests for teacher
+ * 
+ * @author quentin.barlet.etu
+ * @author simon.bocquet.etu
+ * @author marine.sandras.etu
+ */
+public class TeacherTest {
 
 	private Teacher t1, t2;
-	List<Resource> listR1, listR2;
+	private List<Resource> listR1, listR2;
 	
+	/**
+	 * Initialize teachers for each tests
+	 */
 	@BeforeEach
 	void initilization() {
 		t1 = new Teacher("A", "A", Resource.BDD);
@@ -24,6 +34,9 @@ class TeacherTest {
 		t2 = new Teacher("B", "B", listR1);
 	}
 
+	/**
+	 * Test the initialization 
+	 */
 	@Test
 	void initTest() {
 		assertEquals("A", t1.getFirstName());
@@ -32,12 +45,18 @@ class TeacherTest {
 		assertEquals("B", t2.getLastName());
 	}
 	
+	/**
+	 * Test the getResource method 
+	 */
 	@Test
 	void getResourceTest() {
 		assertEquals(listR1, t2.getResources());
 		assertEquals(listR2, t1.getResources());
 	}
 	
+	/**
+	 * Test the setResource method
+	 */
 	@Test 
 	void setResourceTest() {
 		assertEquals(listR1, t2.getResources());
@@ -46,7 +65,9 @@ class TeacherTest {
 		t1.setResources(listR2);
 	}
 	
-	
+	/**
+	 * Test adding resource to teacher
+	 */
 	@Test
 	void addResourceTest() {
 		t1.addResource("Algo");

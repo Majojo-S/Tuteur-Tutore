@@ -1,24 +1,25 @@
 package tutoring;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tutoring.Student;
-
 /**
- * Project C-G3
+ * Tests for student
  *
  * @author quentin.barlet.etu
  * @author simon.bocquet.etu
  * @author marine.sandras.etu
- * The 04 of avril 2022
+ * 
  */
 public class StudentTest {
 
     private Student s1, s2, s3;
 
+    /**
+     * initialize students for each tests
+     */
     @BeforeEach
     public void initialization() {
         s1 = new Student("John1", "Doe1");
@@ -26,10 +27,16 @@ public class StudentTest {
         s3 = new Student("", "Doe");
     }
 
+    /**
+     * Test the validity of a student
+     */
     @Test
     public void validateStudentTest() {
     }
 
+    /**
+     * Test the default values for the study level, the number of absences and the name of a student
+     */
     @Test
     public void checkDefaultValueTest() {
 

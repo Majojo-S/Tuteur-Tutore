@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Project C-G3
+ * A tutored student has a list of resources to be tutored
  *
  * @author quentin.barlet.etu
  * @author simon.bocquet.etu
@@ -16,23 +16,23 @@ public class Tutored extends Student {
     
     /**
      * Create a Tutored Student
-     * @param First name of tutored
-     * @param Last name of tutored
+     * @param firstName First name of tutored
+     * @param lastName Last name of tutored
      */
-    public Tutored(String fn, String ln) {
-        super(fn, ln, 1);
+    public Tutored(String firstName, String lastName) {
+        super(firstName, lastName, 1);
         resources = new ArrayList<>();
     }
     
     /**
      * Created a Tutored Student with a resource
-     * @param fn
-     * @param ln
-     * @param r
+     * @param firstName First name of tutored 
+     * @param lastName Last name of tutored
+     * @param resource Resource to be tutored
      */
-    public Tutored(String fn, String ln, Resource r) {
-        this(fn,ln);
-        this.resources.add(r);
+    public Tutored(String firstName, String lastName, Resource resource) {
+        this(firstName,lastName);
+        this.resources.add(resource);
     }
 
     /**
@@ -45,7 +45,7 @@ public class Tutored extends Student {
 
     /**
      * Set List of Resources
-     * @param List of resource 
+     * @param resources List of resource 
      */
     public void setResources(List<Resource> resources) {
         this.resources = resources;
@@ -53,9 +53,9 @@ public class Tutored extends Student {
     
     /**
      * Add a resource to the list
-     * @param Resource 
+     * @param resource Resource to add
      */
-    public void addRessource(Resource r) {
-    	resources.add(r);
+    public void addRessource(Resource resource) {
+    	resources.add(resource);
     }
 }

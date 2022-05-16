@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Project C-G3
+ * A tutor is the same as a student with a list of tutored student and a resource to tutor
  *
  * @author quentin.barlet.etu
  * @author simon.bocquet.etu
@@ -14,36 +14,37 @@ public class Tutor extends Student {
 
     private List<Tutored> tutored;
     private Resource resource;
+    
     /**
      * Full Constructor
-     * @param First Name of tutor
-     * @param Last Name of tutor
-     * @param Student Level of tutor
+     * @param firstName First Name of tutor
+     * @param lastName Last Name of tutor
+     * @param resource Student Level of tutor
      */
-    public Tutor(String fn, String ln, int studentLvl, Resource r) {
-    	super(fn,ln,studentLvl);
-    	resource = r;
-    	tutored = new ArrayList<>();
+    public Tutor(String firstName, String lastName, int studentLvl, Resource resource) {
+    	super(firstName,lastName,studentLvl);
+    	this.resource = resource;
+    	this.tutored = new ArrayList<>();
     }
     
     /**
      * Constructor with first name, last name and student level of the tutor
-     * @param First Name of tutor
-     * @param Last Name of tutor
-     * @param Student level of tutor
+     * @param firstName First Name of tutor
+     * @param lastName Last Name of tutor
+     * @param studentLvl Student level of tutor
      */
-    public Tutor(String fn, String ln, int studentLvl) {
-        this(fn, ln, studentLvl, null);
+    public Tutor(String firstName, String lastName, int studentLvl) {
+        this(firstName, lastName, studentLvl, null);
     }
 
-    /**
+    /**Updated
      * Constructor with first name last name and resource of tutor
-     * @param First Name of tutor
-     * @param Last Name of tutor
-     * @param Resource of tutor
+     * @param firstName First Name of tutor
+     * @param lastName Last Name of tutor
+     * @param resource Resource of tutor
      */
-    public Tutor(String firstName, String lastName, Resource r) {
-        this(firstName, lastName, 2, r);
+    public Tutor(String firstName, String lastName, Resource resource) {
+        this(firstName, lastName, 2, resource);
     }
 
     /**
@@ -65,7 +66,7 @@ public class Tutor extends Student {
 
     /**
      * Set list of tutored student for this tutor
-     * @param list of student to be tutored
+     * @param tutored List of student to be tutored
      */
     public void setTutored(List<Tutored> tutored) {
         this.tutored = tutored;
@@ -73,7 +74,7 @@ public class Tutor extends Student {
 
     /**
      * Get resource of tutor
-     * @return resource of tutor
+     * @return Resource of tutor
      */
     public Resource getResource() {
         return resource;
@@ -81,7 +82,7 @@ public class Tutor extends Student {
 
     /**
      * Set resource of tutor
-     * @param resource of tutor
+     * @param resource Resource of tutor
      */
     public void setResource(Resource resource) {
         this.resource = resource;
@@ -89,10 +90,10 @@ public class Tutor extends Student {
     
     /**
      * Add a tutored to list of student to be tutored
-     * @param tutored
+     * @param tutoredStudent tutored Student
      */
-    public void addTutored(Tutored t) {
-    	tutored.add(t);
+    public void addTutored(Tutored tutoredStudent) {
+    	tutored.add(tutoredStudent);
     }
     
 }

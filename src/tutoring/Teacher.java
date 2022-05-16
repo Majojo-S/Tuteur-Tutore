@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Project C-G3
+ * A teacher is the same as a person with a list of resources
  *
  * @author quentin.barlet.etu
  * @author simon.bocquet.etu
@@ -17,26 +17,26 @@ public class Teacher extends Person {
     /**
      * Create New Teacher with multiple resources
      *
-     * @param First name of teacher
-     * @param Last name of teacher
-     * @param List of resource of the teacherr
+     * @param firstName First name of teacher
+     * @param lastName Last name of teacher
+     * @param resources List of resource of the teacher
      */
-    public Teacher(String firstName, String lastName, List<Resource> resource) {
+    public Teacher(String firstName, String lastName, List<Resource> resources) {
         super(firstName, lastName);
-        this.resources = resource;
+        this.resources = resources;
     }
 
     /**
-     * Create new Teacher with 1 ressource
+     * Create new Teacher with 1 resource
      *
-     * @param First name of teacher
-     * @param Last name of teacher
-     * @param resource of teacher
+     * @param firstName First name of teacher
+     * @param lastName Last name of teacher
+     * @param resource resource of teacher
      */
-    public Teacher(String firstName, String lastName, Resource ressource) {
+    public Teacher(String firstName, String lastName, Resource resource) {
         super(firstName, lastName);
         resources = new ArrayList<>();
-        resources.add(ressource);
+        resources.add(resource);
     }
 
     /**
@@ -51,7 +51,7 @@ public class Teacher extends Person {
     /**
      * Set the list of resources the teacher can teach
      *
-     * @param resources Resource
+     * @param resources List of resources to affect to the teacher
      */
     public void setResources(List<Resource> resources) {
         this.resources = resources;
@@ -60,12 +60,12 @@ public class Teacher extends Person {
     /**
      * Add a new Resource
      *
-     * @param resource String
+     * @param resource Resource to add 
      */
     public void addResource(String resource) {
-    	for (Resource r : Resource.values()) {
-    		if(r.name().equals(resource.toUpperCase()))
-    			resources.add(r);
+    	for (Resource res : Resource.values()) {
+    		if(res.name().equals(resource.toUpperCase()))
+    			resources.add(res);
 		}
     }
 
