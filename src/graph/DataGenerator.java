@@ -23,6 +23,8 @@ public class DataGenerator {
 	public static final ArrayList<Student> tutors = generateTutorList();
 	public static final ArrayList<Student> tutored = generateTutoredList();
 	public static final ArrayList<Student> data = mergeArrays();
+	// TODO marine 17.05.2022 : a list of student we don't want and a hash map of
+	// the tutor and tutored we want together
 
 	/*
 	 * merge the list of tutor and tutored

@@ -26,6 +26,7 @@ public class GraphGenerator {
 	 */
 	public static GrapheNonOrienteValue<Student> createGraph() {
 		GrapheNonOrienteValue<Student> graph = new GrapheNonOrienteValue<>();
+		// TODO marine 17.05.2022 : remove student given by a list
 		DataGenerator.fillSizeDifference();
 		addVertex(graph);
 		makeEdge(graph);
@@ -76,6 +77,7 @@ public class GraphGenerator {
 			for (Student tutored : tutored) {
 				if (tutored.getFirstName().equals("null")) {
 					graph.ajouterArete(tutor, tutored, 30);
+					// TODO marine 17.05.2022 : access to hash map of couple
 				} else if (tutor.getFirstName().equals("D") && tutored.getFirstName().equals("Q")
 						|| tutor.getFirstName().equals("E") && tutored.getFirstName().equals("N")) {
 					graph.ajouterArete(tutor, tutored, 0);
