@@ -1,7 +1,9 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -24,6 +26,8 @@ public class DataGenerator {
 	public static final ArrayList<Student> tutored = generateTutoredList();
 	public static final ArrayList<Student> data = mergeArrays();
 	// TODO marine 17.05.2022 : a list of student we don't want and a hash map of
+	public static final ArrayList<Student> remove = chosenOne();
+	public static final Map<Tutor, Tutored> couples = new HashMap<Tutor, Tutored>();
 	// the tutor and tutored we want together
 
 	/*
@@ -37,6 +41,15 @@ public class DataGenerator {
 		list.addAll(DataGenerator.tutored);
 
 		return list;
+	}
+
+	private static void cupidon(Tutor t, Tutored td) {
+		couples.put(t, td);
+	}
+
+	private static ArrayList<Student> chosenOne() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/**
