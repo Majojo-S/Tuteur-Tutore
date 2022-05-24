@@ -1,6 +1,5 @@
 package tutoring;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +12,6 @@ import java.util.Map;
  */
 public class Student extends Person {
 
-    public static ArrayList<Student> students = new ArrayList<>();
     private int studyLevel;
     private int absence;
     private final Map<Resource, Double> grades;
