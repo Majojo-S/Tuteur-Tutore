@@ -1,3 +1,7 @@
+package main;
+
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
@@ -18,7 +22,7 @@ public class Main extends Application {
 
 	private static final String WIN_TITLE = "SAE 2.01 & 2.02 Tuteurs et Tutorés";
 	private static final Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-	private static final Point2D size = new Point2D(screenBounds.getWidth() - 100, screenBounds.getHeight() - 20);
+	private static final Point2D size = new Point2D(656, 383);
 
 	public static void main(String[] args) {
 		Application.launch(args);
@@ -26,8 +30,10 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/views/HomeView.fxml"));
+		File f = new File("res"+ File.separator +"Interface.fxml");
+		
+		FXMLLoader loader = new FXMLLoader(f.toURI().toURL());
+		System.out.println(loader.getLocation());
 		VBox root = loader.load();
 		Scene scene = new Scene(root, size.getX(), size.getY());
 		stage.setScene(scene);

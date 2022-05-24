@@ -32,34 +32,35 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="373.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="373.0" maxWidth="656.0" minHeight="373.0" minWidth="656.0" prefHeight="373.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="383.0" prefWidth="656.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="383.0" maxWidth="656.0" minHeight="383.0" minWidth="656.0" prefHeight="383.0" prefWidth="656.0" VBox.vgrow="ALWAYS">
       <children>
-            <ListView layoutX="35.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0" />
-            <ListView layoutX="427.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="listTutor" layoutX="35.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="listTutored" layoutX="427.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0" />
             <Label layoutX="35.0" layoutY="50.0" text="Tuteur :" />
             <Label layoutX="427.0" layoutY="46.0" text="Tutorés :" />
-            <Button layoutX="35.0" layoutY="281.0" mnemonicParsing="false" text="Ajouter" />
-            <Button layoutX="104.0" layoutY="281.0" mnemonicParsing="false" text="Retirer" />
-            <Button layoutX="427.0" layoutY="272.0" mnemonicParsing="false" text="Ajouter" />
-            <Button layoutX="496.0" layoutY="272.0" mnemonicParsing="false" text="Retirer" />
-            <TextField layoutX="243.0" layoutY="187.0" prefHeight="27.0" prefWidth="171.0" promptText="Rechercher un élève" />
-            <Button layoutX="271.0" layoutY="220.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="115.0" text="Rechercher" />
+            <Button fx:id="addTutor" layoutX="35.0" layoutY="281.0" mnemonicParsing="false" text="Ajouter" />
+            <Button fx:id="RemoveTutor" layoutX="104.0" layoutY="281.0" mnemonicParsing="false" text="Retirer" />
+            <Button fx:id="addTutored" layoutX="427.0" layoutY="272.0" mnemonicParsing="false" text="Ajouter" />
+            <Button fx:id="removeTutored" layoutX="496.0" layoutY="272.0" mnemonicParsing="false" text="Retirer" />
+            <Button fx:id="searchButton" layoutX="271.0" layoutY="220.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="115.0" text="Rechercher" />
             <Label layoutX="293.0" layoutY="14.0" text="Ressource :" textAlignment="CENTER" />
-            <Label layoutX="280.0" layoutY="30.0" text="Nom Ressource" textAlignment="CENTER" />
-            <Button layoutX="253.0" layoutY="96.0" mnemonicParsing="false" text="Etudiant non affecté" />
-            <Button layoutX="249.0" layoutY="143.0" mnemonicParsing="false" text="Affecter tuteur/tutoré" />
-            <Slider layoutX="249.0" layoutY="334.0" max="20.0" />
-            <Label layoutX="262.0" layoutY="318.0" text="Nombre d'étudiant par ressource" />
+            <Label layoutX="314.0" layoutY="30.0" text="Algo" textAlignment="CENTER" />
+            <Button fx:id="notAffectedButton" layoutX="260.0" layoutY="98.0" mnemonicParsing="false" text="Etudiant non affecté" />
+            <Button fx:id="affectTutorButton" layoutX="256.0" layoutY="143.0" mnemonicParsing="false" text="Affecter tuteur/tutoré" />
+            <Slider fx:id="resLimitSlider" blockIncrement="1.0" layoutX="249.0" layoutY="337.0" max="20.0" showTickLabels="true" snapToTicks="true" value="10.0" />
+            <Label layoutX="216.0" layoutY="305.0" text="Nombre d'étudiant par ressource :" />
+            <Label fx:id="resLimitLabel" layoutX="301.0" layoutY="321.0" text="Limit" />
+            <TextField fx:id="searchStudentField" layoutX="249.0" layoutY="187.0" promptText="Rechercher un élève" />
       </children>
     </AnchorPane>
   </children>
