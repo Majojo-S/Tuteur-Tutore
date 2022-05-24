@@ -1,8 +1,13 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import fr.ulille.but.sae2_02.graphes.GrapheNonOrienteValue;
+import tutoring.Resource;
 import tutoring.Student;
 import tutoring.tutor.Tutor;
 import tutoring.tutored.Tutored;
@@ -12,26 +17,51 @@ import tutoring.tutored.Tutored;
  *
  * @author quentin.barlet.etu
  * @author marine.sandras.etu
- * @author simon.bocquet.etu The 09 may 2022
+ * @author simon.bocquet.etu The 24 may 2022
  */
 public class GraphGenerator {
 
-	private static final ArrayList<Student> tutors = DataGenerator.tutors;
-	private static final ArrayList<Student> tutored = DataGenerator.tutored;
+	private ArrayList<Student> tutors;
+	private ArrayList<Student> tutored;
+	private Map<Tutor, Tutored> couple;
+	private ArrayList<Student> banned;
+	private Resource r;
+
+	public GraphGenerator(ArrayList<Student> tutors, ArrayList<Student> tutored, Map<Tutor, Tutored> couple,
+			ArrayList<Student> banned, Resource r) {
+		this.tutors = tutors;
+		this.tutored = tutored;
+		this.couple = couple;
+		this.banned = banned;
+		this.r = r;
+	}
 
 	/*
 	 * Create the graph
 	 * 
 	 * @return a graph with vertex and edge of a dataGenerator
 	 */
-	public static GrapheNonOrienteValue<Student> createGraph() {
+	public GrapheNonOrienteValue<Student> createGraph() {
 		GrapheNonOrienteValue<Student> graph = new GrapheNonOrienteValue<>();
 		// TODO marine 17.05.2022 : remove student given by a list
-		DataGenerator.fillSizeDifference();
+		removeBanned();
+		fillSizeDifference();
 		addVertex(graph);
 		makeEdge(graph);
 
 		return graph;
+	}
+
+	private void removeBanned() {
+		for (Student s : banned) {
+			if (tutors.contains(s)) {
+				tutors.remove(s);
+			}
+			if (tutored.contains(s)) {
+				tutored.remove(s);
+			}
+		}
+
 	}
 
 	/*
@@ -39,7 +69,7 @@ public class GraphGenerator {
 	 * 
 	 * @param a graph non oriented and value of student
 	 */
-	private static void addVertex(GrapheNonOrienteValue<Student> graph) {
+	private void addVertex(GrapheNonOrienteValue<Student> graph) {
 		for (Student tutor : tutors)
 			graph.ajouterSommet(tutor);
 		for (Student student : tutored)
@@ -55,7 +85,7 @@ public class GraphGenerator {
 	 * 
 	 * @return the weight of the edge
 	 */
-	private static double calculateNodeWeight(Tutor t, Tutored td) {
+	private double calculateNodeWeight(Tutor t, Tutored td) {
 		if (t == null)
 			return 0;
 		if (td == null)
@@ -63,7 +93,7 @@ public class GraphGenerator {
 		int max = 20;
 		if (t.getStudyLevel() == 3)
 			max -= 5;
-		max -= (t.getAverage(t.getResource()) - td.getAverage(t.getResource()));
+		max -= (t.getAverage(r) - td.getAverage(r));
 		return max;
 	}
 
@@ -72,19 +102,49 @@ public class GraphGenerator {
 	 * 
 	 * @param a graph non oriented and value of student
 	 */
-	private static void makeEdge(GrapheNonOrienteValue<Student> graph) {
+	private void makeEdge(GrapheNonOrienteValue<Student> graph) {
 		for (Student tutor : tutors) {
 			for (Student tutored : tutored) {
 				if (tutored.getFirstName().equals("null")) {
 					graph.ajouterArete(tutor, tutored, 30);
 					// TODO marine 17.05.2022 : access to hash map of couple
-				} else if (tutor.getFirstName().equals("D") && tutored.getFirstName().equals("Q")
-						|| tutor.getFirstName().equals("E") && tutored.getFirstName().equals("N")) {
+				} else if (couple.containsKey(tutor) && couple.get(tutor).equals(tutored)) {
 					graph.ajouterArete(tutor, tutored, 0);
 				} else {
 					graph.ajouterArete(tutor, tutored, calculateNodeWeight((Tutor) tutor, (Tutored) tutored));
 
 				}
+			}
+		}
+	}
+
+	/*
+	 * fill the list of tutor or tutored if one of them have different size to make
+	 * it the same size
+	 * 
+	 */
+	public void fillSizeDifference() {
+		if (tutors.size() < tutored.size()) {
+			// rajouter en double tutor 3e année jusqu'à atteindre la taille des tutored
+			List<Student> thirdStudyLevelStudents = tutors.stream().filter(new Predicate<Student>() {
+				@Override
+				public boolean test(Student s) {
+					return s.getStudyLevel() == 3;
+				}
+			}).collect(Collectors.toList());
+//            System.out.println(thirdStudyLevel.size()); // 3
+			int sizeDifference = tutored.size() - tutors.size();
+			for (int i = 0; i < sizeDifference; ++i) {
+				Student s = thirdStudyLevelStudents.get(i % thirdStudyLevelStudents.size());
+				Tutor t = new Tutor(s.getFirstName() + "2", s.getLastName(), 3, r);
+				t.addGrade(r, s.getAverage(r));
+				tutors.add(t);
+			}
+		} else {
+			// rajouter des tutored null avec des poids énormes
+			for (int i = tutored.size(); i < tutors.size(); ++i) {
+				Tutored s = new Tutored("null", "null");
+				tutored.add(s);
 			}
 		}
 	}

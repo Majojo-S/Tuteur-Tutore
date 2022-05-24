@@ -1,11 +1,7 @@
 package graph;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import tutoring.Resource;
 import tutoring.Student;
@@ -25,10 +21,8 @@ public class DataGenerator {
 	public static final ArrayList<Student> tutors = generateTutorList();
 	public static final ArrayList<Student> tutored = generateTutoredList();
 	public static final ArrayList<Student> data = mergeArrays();
-	// TODO marine 17.05.2022 : a list of student we don't want and a hash map of
-	public static final ArrayList<Student> remove = chosenOne();
-	public static final Map<Tutor, Tutored> couples = new HashMap<Tutor, Tutored>();
-	// the tutor and tutored we want together
+	public static Map<Tutor, Tutored> couple;
+	public static ArrayList<Student> banned;
 
 	/*
 	 * merge the list of tutor and tutored
@@ -41,15 +35,6 @@ public class DataGenerator {
 		list.addAll(DataGenerator.tutored);
 
 		return list;
-	}
-
-	private static void cupidon(Tutor t, Tutored td) {
-		couples.put(t, td);
-	}
-
-	private static ArrayList<Student> chosenOne() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	/**
@@ -107,38 +92,9 @@ public class DataGenerator {
 		Tutored Q = new Tutored("Q", "Q", resource);
 		Q.addGrade(resource, 8.9);
 		tutored.add(Q);
+		banned.add(Q);
 
 		return tutored;
 	}
 
-	/*
-	 * fill the list of tutor or tutored if one of them have different size to make
-	 * it the same size
-	 * 
-	 */
-	public static void fillSizeDifference() {
-		if (tutors.size() < tutored.size()) {
-			// rajouter en double tutor 3e année jusqu'à atteindre la taille des tutored
-			List<Student> thirdStudyLevelStudents = tutors.stream().filter(new Predicate<Student>() {
-				@Override
-				public boolean test(Student s) {
-					return s.getStudyLevel() == 3;
-				}
-			}).collect(Collectors.toList());
-//            System.out.println(thirdStudyLevel.size()); // 3
-			int sizeDifference = tutored.size() - tutors.size();
-			for (int i = 0; i < sizeDifference; ++i) {
-				Student s = thirdStudyLevelStudents.get(i % thirdStudyLevelStudents.size());
-				Tutor t = new Tutor(s.getFirstName() + "2", s.getLastName(), 3, Resource.BDD);
-				t.addGrade(Resource.BDD, s.getAverage(Resource.BDD));
-				tutors.add(t);
-			}
-		} else {
-			// rajouter des tutored null avec des poids énormes
-			for (int i = tutored.size(); i < tutors.size(); ++i) {
-				Tutored s = new Tutored("null", "null");
-				tutored.add(s);
-			}
-		}
-	}
 }
