@@ -1,46 +1,37 @@
-import fr.ulille.but.sae2_02.graphes.GrapheNonOrienteValue;
-import graph.GraphGenerator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.SplitPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import tutoring.Student;
 
 /**
  * Project C-G3
  *
  * @author quentin.barlet.etu
  * @author marine.sandras.etu
- * @author simon.bocquet.etu
- * The 09 mai 2022
+ * @author simon.bocquet.etu The 09 mai 2022
  */
 public class Main extends Application {
 
-    private static final String WIN_TITLE = "SAE 2.01 & 2.02 Tuteurs et Tutorés";
-    private static final Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-    private static final Point2D size = new Point2D(screenBounds.getWidth() - 100, screenBounds.getHeight() - 20);
+	private static final String WIN_TITLE = "SAE 2.01 & 2.02 Tuteurs et Tutorés";
+	private static final Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+	private static final Point2D size = new Point2D(screenBounds.getWidth() - 100, screenBounds.getHeight() - 20);
 
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
+	public static void main(String[] args) {
+		Application.launch(args);
+	}
 
-    private static GrapheNonOrienteValue<Student> createGraph() {
-        return GraphGenerator.createGraph();
-    }
+	@Override
+	public void start(Stage stage) throws Exception {
 
-    @Override
-    public void start(Stage stage) throws Exception {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/views/HomeView.fxml"));
-        VBox root = loader.load();
-        Scene scene = new Scene(root, size.getX(), size.getY());
-        stage.setScene(scene);
-        stage.setTitle(WIN_TITLE);
-        stage.show();
-    }
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/views/HomeView.fxml"));
+		VBox root = loader.load();
+		Scene scene = new Scene(root, size.getX(), size.getY());
+		stage.setScene(scene);
+		stage.setTitle(WIN_TITLE);
+		stage.show();
+	}
 }
