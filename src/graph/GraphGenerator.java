@@ -43,7 +43,6 @@ public class GraphGenerator {
 	 */
 	public GrapheNonOrienteValue<Student> createGraph() {
 		GrapheNonOrienteValue<Student> graph = new GrapheNonOrienteValue<>();
-		// TODO marine 17.05.2022 : remove student given by a list
 		removeBanned();
 		fillSizeDifference();
 		addVertex(graph);
@@ -52,6 +51,9 @@ public class GraphGenerator {
 		return graph;
 	}
 
+	/*
+	 * Remove students who banned
+	 */
 	private void removeBanned() {
 		for (Student s : banned) {
 			if (tutors.contains(s)) {
