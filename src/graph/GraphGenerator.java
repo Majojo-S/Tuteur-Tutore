@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import fr.ulille.but.sae2_02.graphes.Arete;
+import fr.ulille.but.sae2_02.graphes.CalculAffectation;
 import fr.ulille.but.sae2_02.graphes.GrapheNonOrienteValue;
 import tutoring.Resource;
 import tutoring.Student;
@@ -23,11 +25,12 @@ public class GraphGenerator {
 
 	private ArrayList<Student> tutors;
 	private ArrayList<Student> tutored;
-	private Map<Tutor, Tutored> couple;
+	private Map<Tutored, Tutor> couple;
 	private ArrayList<Student> banned;
 	private Resource r;
+	private List<Arete<Student>> affectation;
 
-	public GraphGenerator(ArrayList<Student> tutors, ArrayList<Student> tutored, Map<Tutor, Tutored> couple,
+	public GraphGenerator(ArrayList<Student> tutors, ArrayList<Student> tutored, Map<Tutored, Tutor> couple,
 			ArrayList<Student> banned, Resource r) {
 		this.tutors = tutors;
 		this.tutored = tutored;
@@ -110,7 +113,7 @@ public class GraphGenerator {
 				if (tutored.getFirstName().equals("null")) {
 					graph.ajouterArete(tutor, tutored, 30);
 					// TODO marine 17.05.2022 : access to hash map of couple
-				} else if (couple.containsKey(tutor) && couple.get(tutor).equals(tutored)) {
+				} else if (couple.containsKey(tutored) && couple.get(tutored).equals(tutor)) {
 					graph.ajouterArete(tutor, tutored, 0);
 				} else {
 					graph.ajouterArete(tutor, tutored, calculateNodeWeight((Tutor) tutor, (Tutored) tutored));
@@ -150,4 +153,37 @@ public class GraphGenerator {
 			}
 		}
 	}
+
+	/*
+	 * do the affectation of the graph
+	 * 
+	 * @param GrapheNonOrienteValue<Student> g
+	 * 
+	 * @param List<Student> tutor
+	 * 
+	 * @param List<Student> tutored
+	 * 
+	 * @return the list of edges who is affected List<Arete<Student>>
+	 * 
+	 */
+	public List<Arete<Student>> doTheAffectation(GrapheNonOrienteValue<Student> g, List<Student> tutor,
+			List<Student> tutored) {
+		CalculAffectation<Student> calcul = new CalculAffectation<Student>(g, tutor, tutored);
+		return calcul.getAffectation();
+	}
+
+	/*
+	 * couples who are affected
+	 * 
+	 * @return the string String
+	 * 
+	 */
+	public String toString() {
+		String res = "";
+		for (Arete<Student> arete : affectation) {
+			res += arete.getExtremite1().toString() + " - " + arete.getExtremite2().toString() + "\n";
+		}
+		return res;
+	}
+
 }
