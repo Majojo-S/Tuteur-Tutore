@@ -15,7 +15,6 @@ import tutoring.Resource;
  */
 public class Teacher extends Person {
 
-    public static ArrayList<Teacher> teachers = new ArrayList<>();
     private List<Resource> resources;
 
     /**

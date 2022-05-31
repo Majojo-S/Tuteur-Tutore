@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class Tutored extends Student {
 
-    List<Resource> resources;
+    private List<Resource> resources;
     
     /**
      * Create a Tutored Student
