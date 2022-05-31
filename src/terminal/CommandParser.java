@@ -15,6 +15,12 @@ public class CommandParser {
 
     private static final String DELIMITER_CHAR = " ";
 
+    /**
+     * Parse and find the associated command
+     *
+     * @param command String
+     * @return ICommand
+     */
     public ICommand parse(String command) throws CommandNotFoundException {
         String[] keyWords = separateKeywords(command);
         ICommand c        = null;

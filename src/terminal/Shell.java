@@ -6,7 +6,7 @@ import terminal.command.ICommand;
 import java.util.Scanner;
 
 /**
- * Project C-G3
+ * Represent the shell in the application context
  *
  * @author quentin.barlet.etu
  * The 31 mai 2022
@@ -15,6 +15,9 @@ public class Shell {
 
     private static final String SHELL_ENTRY = "[SAE_201-202]> ";
 
+    /**
+     * Launch the shell
+     */
     public static void launch() throws InterruptedException {
         Scanner       scanner = new Scanner(System.in);
         CommandParser cp      = new CommandParser();
