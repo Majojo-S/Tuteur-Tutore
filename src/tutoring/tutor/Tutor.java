@@ -16,7 +16,6 @@ import java.util.List;
  */
 public class Tutor extends Student {
 
-    public static ArrayList<Student> tutors = new ArrayList<>();
     private List<Tutored> tutored;
     private Resource resource;
     

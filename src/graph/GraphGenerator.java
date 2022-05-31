@@ -39,7 +39,7 @@ public class GraphGenerator {
 		this.r = r;
 	}
 
-	/*
+	/**
 	 * Create the graph
 	 * 
 	 * @return a graph with vertex and edge of a dataGenerator
@@ -54,7 +54,7 @@ public class GraphGenerator {
 		return graph;
 	}
 
-	/*
+	/**
 	 * Remove students who banned
 	 */
 	private void removeBanned() {
@@ -69,7 +69,7 @@ public class GraphGenerator {
 
 	}
 
-	/*
+	/**
 	 * add vertex to a graph
 	 * 
 	 * @param a graph non oriented and value of student
@@ -81,7 +81,7 @@ public class GraphGenerator {
 			graph.ajouterSommet(student);
 	}
 
-	/*
+	/**
 	 * calculate the weight of the edge between the two student
 	 * 
 	 * @param a tutor
@@ -102,7 +102,7 @@ public class GraphGenerator {
 		return max;
 	}
 
-	/*
+	/**
 	 * do the edge between all the vertex of the graph
 	 * 
 	 * @param a graph non oriented and value of student
@@ -123,7 +123,7 @@ public class GraphGenerator {
 		}
 	}
 
-	/*
+	/**
 	 * fill the list of tutor or tutored if one of them have different size to make
 	 * it the same size
 	 * 
@@ -154,7 +154,7 @@ public class GraphGenerator {
 		}
 	}
 
-	/*
+	/**
 	 * do the affectation of the graph
 	 * 
 	 * @param GrapheNonOrienteValue<Student> g
@@ -172,7 +172,7 @@ public class GraphGenerator {
 		return calcul.getAffectation();
 	}
 
-	/*
+	/**
 	 * couples who are affected
 	 * 
 	 * @return the string String
