@@ -1,6 +1,7 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -39,6 +40,58 @@ public class GraphGenerator {
 		this.r = r;
 	}
 
+	public GraphGenerator(ArrayList<Student> tutors, ArrayList<Student> tutored, ArrayList<Student> banned,
+			Resource r) {
+		this(tutors, tutored, new HashMap<Tutored, Tutor>(), banned, r);
+	}
+
+	public GraphGenerator(ArrayList<Student> tutors, ArrayList<Student> tutored, Map<Tutored, Tutor> couple,
+			Resource r) {
+		this(tutors, tutored, couple, new ArrayList<Student>(), r);
+	}
+
+	public GraphGenerator(ArrayList<Student> tutors, ArrayList<Student> tutored, Resource r) {
+		this(tutors, tutored, new HashMap<Tutored, Tutor>(), new ArrayList<Student>(), r);
+	}
+
+	public GraphGenerator(ArrayList<Student> list, Map<Tutored, Tutor> couple, ArrayList<Student> banned, Resource r) {
+		this(getTutors(list), getTutored(list), couple, banned, r);
+	}
+
+	public GraphGenerator(ArrayList<Student> list, Resource r) {
+		this(list, new HashMap<Tutored, Tutor>(), new ArrayList<Student>(), r);
+	}
+
+	/**
+	 * take the tutors of a list of student
+	 * 
+	 * @param list
+	 * @return ArrayList<Student> tutors
+	 */
+	private static ArrayList<Student> getTutors(ArrayList<Student> list) {
+		ArrayList<Student> res = new ArrayList<Student>();
+		for (Student s : list) {
+			if (s.getStudyLevel() == 2 || s.getStudyLevel() == 3)
+				res.add(s);
+		}
+		return res;
+	}
+
+	/**
+	 * take the tutored of a list of student
+	 * 
+	 * @param list
+	 * @return ArrayList<Student> tutored
+	 */
+	private static ArrayList<Student> getTutored(ArrayList<Student> list) {
+		ArrayList<Student> res = new ArrayList<Student>();
+		for (Student s : list) {
+			if (s.getStudyLevel() == 1)
+				res.add(s);
+		}
+		return res;
+	}
+
 	/**
 	 * Create the graph
 	 * 
@@ -46,12 +99,30 @@ public class GraphGenerator {
 	 */
 	public GrapheNonOrienteValue<Student> createGraph() {
 		GrapheNonOrienteValue<Student> graph = new GrapheNonOrienteValue<>();
+		verifiedCondition();
 		removeBanned();
 		fillSizeDifference();
 		addVertex(graph);
 		makeEdge(graph);
 
 		return graph;
+	}
+
+	/**
+	 * add to banned tutored who are beneath the max average
+	 * 
+	 */
+	private void verifiedCondition() {
+		for (Student s : tutored) {
+			if (!couple.containsKey(s)) {
+				if (s.getAverage(r) > r.averageMax) {
+					banned.add(s);
+				}
+			} else if (!s.getGrade().containsKey(r)) {
+				banned.add(s);
+			}
+		}
+
 	}
 
 	/**
@@ -75,10 +146,18 @@ public class GraphGenerator {
 	 * @param a graph non oriented and value of student
 	 */
 	private void addVertex(GrapheNonOrienteValue<Student> graph) {
-		for (Student tutor : tutors)
-			graph.ajouterSommet(tutor);
-		for (Student student : tutored)
-			graph.ajouterSommet(student);
+		for (int i = 0; i < tutored.size(); ++i)
+			if (i < r.limit)
+				graph.ajouterSommet(tutored.get(i));
+			else if (!tutored.get(i).getFirstName().equals("null")) {
+				banned.add(tutored.get(i));
+			}
+		for (int i = 0; i < tutors.size(); ++i)
+			if (i < r.limit)
+				graph.ajouterSommet(tutors.get(i));
+			else if (!graph.contientSommet(tutors.get(i))) {
+				banned.add(tutors.get(i));
+			}
 	}
 
 	/**
@@ -169,7 +248,13 @@ public class GraphGenerator {
 	public List<Arete<Student>> doTheAffectation(GrapheNonOrienteValue<Student> g, List<Student> tutor,
 			List<Student> tutored) {
 		CalculAffectation<Student> calcul = new CalculAffectation<Student>(g, tutor, tutored);
-		return calcul.getAffectation();
+		List<Arete<Student>> res = calcul.getAffectation();
+		for (int i = 0; i < res.size(); ++i) {
+			if (res.get(i).getExtremite2().getFirstName().equals("null")) {
+				res.remove(i);
+			}
+		}
+		return res;
 	}
 
 	/**

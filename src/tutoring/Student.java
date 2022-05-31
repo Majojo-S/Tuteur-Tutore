@@ -127,6 +127,10 @@ public class Student extends Person {
 		}
 	}
 
+	public Map<Resource, Double> getGrade() {
+		return grades;
+	}
+
 	/**
 	 * Print student's first and last name
 	 */

@@ -11,8 +11,8 @@ public enum Resource {
 	BDD("Base de donnée", 30, 11), ALGO("Algorithmie", 30, 13), SYSTEM("Système", 30, 10);
 
 	final String name;
-	int limit;
-	double averageMax;
+	public int limit;
+	public double averageMax;
 
 	Resource(String name, int limit, double averageMax) {
 		this.name = name;
