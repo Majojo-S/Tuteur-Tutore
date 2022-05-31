@@ -1,6 +1,7 @@
 package terminal;
 
 import terminal.command.CommandNotFoundException;
+import terminal.command.ExitCommand;
 import terminal.command.HelpCommand;
 import terminal.command.ICommand;
 
@@ -20,6 +21,9 @@ public class CommandParser {
         switch (keyWords[0]) {
             case "help":
                 c = new HelpCommand();
+                break;
+            case "exit":
+                c = new ExitCommand();
                 break;
         }
 
