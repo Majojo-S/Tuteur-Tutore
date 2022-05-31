@@ -15,11 +15,7 @@ import tutoring.Resource;
  */
 public class Teacher extends Person {
 
-<<<<<<< HEAD
 	private List<Resource> resources;
-=======
-    private List<Resource> resources;
->>>>>>> ad017bb5a01d24fd1d50f721fd57285f60bc7b4a
 
 	/**
 	 * Create new Teacher with 1 resource

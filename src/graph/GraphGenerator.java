@@ -98,7 +98,7 @@ public class GraphGenerator {
 		int max = 20;
 		if (t.getStudyLevel() == 3)
 			max -= 5;
-		max -= (t.getAverage(r) - td.getAverage(r));
+		max -= t.getAverage(r) - td.getAverage(r);
 		return max;
 	}
 
@@ -159,9 +159,9 @@ public class GraphGenerator {
 	 * 
 	 * @param GrapheNonOrienteValue<Student> g
 	 * 
-	 * @param List<Student> tutor
+	 * @param List<Student>                  tutor
 	 * 
-	 * @param List<Student> tutored
+	 * @param List<Student>                  tutored
 	 * 
 	 * @return the list of edges who is affected List<Arete<Student>>
 	 * 
