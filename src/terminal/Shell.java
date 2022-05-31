@@ -1,6 +1,6 @@
 package terminal;
 
-import terminal.command.CommandNotFoundException;
+import terminal.command.exception.CommandNotFoundException;
 import terminal.command.ICommand;
 
 import java.util.Scanner;

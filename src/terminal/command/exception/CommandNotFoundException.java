@@ -1,4 +1,4 @@
-package terminal.command;
+package terminal.command.exception;
 
 /**
  * Project C-G3
