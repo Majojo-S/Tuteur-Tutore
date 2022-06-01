@@ -33,4 +33,8 @@ public enum Resource {
 	public void setAverageMax(double average) {
 		averageMax = average;
 	}
+
+	public double getAverageMax() {
+		return averageMax;
+	}
 }
