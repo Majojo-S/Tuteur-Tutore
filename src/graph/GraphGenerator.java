@@ -115,7 +115,7 @@ public class GraphGenerator {
 	private void verifiedCondition() {
 		for (Student s : tutored) {
 			if (!couple.containsKey(s)) {
-				if (s.getAverage(r) > r.averageMax) {
+				if (s.getAverage(r) > r.getAverageMax()) {
 					banned.add(s);
 				}
 			} else if (!s.getGrade().containsKey(r)) {
@@ -147,13 +147,13 @@ public class GraphGenerator {
 	 */
 	private void addVertex(GrapheNonOrienteValue<Student> graph) {
 		for (int i = 0; i < tutored.size(); ++i)
-			if (i < r.limit)
+			if (i < r.getLimit())
 				graph.ajouterSommet(tutored.get(i));
 			else if (!tutored.get(i).getFirstName().equals("null")) {
 				banned.add(tutored.get(i));
 			}
 		for (int i = 0; i < tutors.size(); ++i)
-			if (i < r.limit)
+			if (i < r.getLimit())
 				graph.ajouterSommet(tutors.get(i));
 			else if (!graph.contientSommet(tutors.get(i))) {
 				banned.add(tutors.get(i));
