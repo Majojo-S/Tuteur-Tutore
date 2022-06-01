@@ -257,6 +257,16 @@ public class GraphGenerator {
 		return res;
 	}
 
+	public void addCouple(Tutor t, Tutored td) {
+		if (!couple.containsKey(td))
+			couple.put(td, t);
+	}
+
+	public void addBanned(Student s) {
+		if (!banned.contains(s))
+			banned.add(s);
+	}
+
 	/**
 	 * couples who are affected
 	 * 
