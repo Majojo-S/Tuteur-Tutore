@@ -13,6 +13,8 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import terminal.Shell;
 import terminal.command.exception.CommandNotFoundException;
+import ui.controller.Controller;
+import ui.model.Model;
 
 /**
  * Project C-G3
