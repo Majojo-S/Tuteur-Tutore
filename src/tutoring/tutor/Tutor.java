@@ -18,34 +18,38 @@ public class Tutor extends Student {
 
     private List<Tutored> tutored;
     private Resource resource;
-    
+
     /**
      * Full Constructor
+     *
      * @param firstName First Name of tutor
-     * @param lastName Last Name of tutor
-     * @param resource Student Level of tutor
+     * @param lastName  Last Name of tutor
+     * @param resource  Student Level of tutor
      */
     public Tutor(String firstName, String lastName, int studentLvl, Resource resource) {
-    	super(firstName,lastName,studentLvl);
-    	this.resource = resource;
-    	this.tutored = new ArrayList<>();
+        super(firstName, lastName, studentLvl);
+        this.resource = resource;
+        this.tutored = new ArrayList<>();
     }
-    
+
     /**
      * Constructor with first name, last name and student level of the tutor
-     * @param firstName First Name of tutor
-     * @param lastName Last Name of tutor
+     *
+     * @param firstName  First Name of tutor
+     * @param lastName   Last Name of tutor
      * @param studentLvl Student level of tutor
      */
     public Tutor(String firstName, String lastName, int studentLvl) {
         this(firstName, lastName, studentLvl, null);
     }
 
-    /**Updated
+    /**
+     * Updated
      * Constructor with first name last name and resource of tutor
+     *
      * @param firstName First Name of tutor
-     * @param lastName Last Name of tutor
-     * @param resource Resource of tutor
+     * @param lastName  Last Name of tutor
+     * @param resource  Resource of tutor
      */
     public Tutor(String firstName, String lastName, Resource resource) {
         this(firstName, lastName, 2, resource);
@@ -72,6 +76,7 @@ public class Tutor extends Student {
 
     /**
      * Set list of tutored student for this tutor
+     *
      * @param tutored List of student to be tutored
      */
     public void setTutored(List<Tutored> tutored) {
@@ -80,6 +85,7 @@ public class Tutor extends Student {
 
     /**
      * Get resource of tutor
+     *
      * @return Resource of tutor
      */
     public Resource getResource() {
@@ -88,17 +94,24 @@ public class Tutor extends Student {
 
     /**
      * Set resource of tutor
+     *
      * @param resource Resource of tutor
-	*/
+     */
     public void setResource(Resource resource) {
         this.resource = resource;
     }
 
     /**
      * Add a tutored to list of student to be tutored
+     *
      * @param tutoredStudent tutored Student
      */
     public void addTutored(Tutored tutoredStudent) {
-    	tutored.add(tutoredStudent);
+        tutored.add(tutoredStudent);
+    }
+
+    @Override
+    public String toString() {
+        return "Tutor: " + getFirstName() + " " + getLastName();
     }
 }

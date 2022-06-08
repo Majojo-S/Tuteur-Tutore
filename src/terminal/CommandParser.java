@@ -1,9 +1,9 @@
 package terminal;
 
+import terminal.command.*;
 import terminal.command.exception.CommandNotFoundException;
-import terminal.command.ExitCommand;
-import terminal.command.HelpCommand;
-import terminal.command.ICommand;
+
+import java.util.Objects;
 
 /**
  * Project C-G3
@@ -23,13 +23,17 @@ public class CommandParser {
      */
     public ICommand parse(String command) throws CommandNotFoundException {
         String[] keyWords = separateKeywords(command);
-        ICommand c        = null;
+        ICommand c = null;
         switch (keyWords[0]) {
             case "help":
                 c = new HelpCommand();
                 break;
             case "exit":
                 c = new ExitCommand();
+                break;
+            case "list":
+                if (keyWords[1].equals("tutors")) c = new ListTutorsCommand();
+                if (keyWords[1].equals("tutored")) c = new ListTutoredCommand();
                 break;
         }
 
