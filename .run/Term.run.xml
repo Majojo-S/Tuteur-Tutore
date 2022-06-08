@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Term" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="liberica-11" />
     <option name="MAIN_CLASS_NAME" value="main.Main" />
     <module name="C-G3" />
     <option name="VM_PARAMETERS" value="--module-path ./libs/javafx-sdk-11/lib --add-modules=javafx.controls,javafx.fxml" />
