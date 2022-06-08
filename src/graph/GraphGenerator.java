@@ -114,8 +114,8 @@ public class GraphGenerator {
     private void verifiedCondition() {
         for (Student s : tutored) {
             if (!couple.containsKey(s)) {
-                if (s.getAverage(r) > r.getAverageMax()) {
-                    banned.add(s);
+                    if (s.getAverage(r) > r.getAverageMax()) {
+                        banned.add(s);
                 }
             } else if (!s.getGrade().containsKey(r)) {
                 banned.add(s);

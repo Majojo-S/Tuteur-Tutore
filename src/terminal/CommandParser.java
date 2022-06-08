@@ -35,6 +35,9 @@ public class CommandParser {
                 if (keyWords[1].equals("tutors")) c = new ListTutorsCommand();
                 if (keyWords[1].equals("tutored")) c = new ListTutoredCommand();
                 break;
+            case "graph":
+                c = new GraphCommand();
+                break;
         }
 
         if (c == null) throw new CommandNotFoundException(command);

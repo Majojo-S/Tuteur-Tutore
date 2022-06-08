@@ -10,8 +10,7 @@ public class HelpCommand extends AbstractCommand implements ICommand {
 
     private static final String COMMAND_NAME = "help";
 
-    private static final String[][] commands = {{"Help", "Show this help"}, {"list tutors", "Display all tutors"}, {"list tutored", "Display all tutored"}, {"exit", "Exit the shell"}
-    };
+    private static final String[][] commands = {{"Help", "Show this help"}, {"list tutors", "Display all tutors"}, {"list tutored", "Display all tutored"}, {"graph", "Display all edges of the created graph"}, {"exit", "Exit the shell"}};
 
     @Override
     public boolean execute() {

@@ -27,7 +27,7 @@ public class Model {
         return m;
     }
 
-    public void setTutors(List<Tutor> t_tutors) {
+    public void setTutors(ArrayList<Tutor> t_tutors) {
         tutors = t_tutors;
     }
 

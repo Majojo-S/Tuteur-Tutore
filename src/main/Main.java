@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import fr.ulille.but.sae2_02.graphes.GrapheNonOrienteValue;
+import graph.GraphGenerator;
+import graph.TutoringGraph;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
@@ -15,10 +18,13 @@ import javafx.stage.Stage;
 import reader.StudentCSVReader;
 import terminal.Shell;
 import terminal.command.exception.CommandNotFoundException;
+import tutoring.Resource;
 import tutoring.Student;
 import tutoring.tutor.Tutor;
 import tutoring.tutored.Tutored;
 import ui.model.Model;
+
+import static java.lang.System.exit;
 
 /**
  * Project C-G3
@@ -40,18 +46,19 @@ public class Main extends Application {
         ArrayList<Tutor> tutors = new ArrayList<>();
         ArrayList<Tutored> tutored = new ArrayList<>();
         for (Student is : students) {
-            if (is instanceof Tutor) {
-                tutors.add((Tutor) is);
-            }
-            if (is instanceof Tutored) {
-                tutored.add((Tutored) is);
-                System.out.println(is);
-            }
+            if (is instanceof Tutor) tutors.add((Tutor) is);
+            if (is instanceof Tutored) tutored.add((Tutored) is);
         }
 
         Model m = Model.getInstance();
         m.setTutors(tutors);
         m.setTutored(tutored);
+
+        // TODO quentin 6/8/22: CODE HORRIBLE JUST HORRIBLE !!!!!!
+        ArrayList<Student> tutorsAsStudent = new ArrayList<>(tutors);
+        ArrayList<Student> tutoredAsStudent = new ArrayList<>(tutored);
+        GrapheNonOrienteValue<Student> graph = new GraphGenerator(tutorsAsStudent, tutoredAsStudent, Resource.ALGO).createGraph();
+        TutoringGraph.setGraph(graph);
 
         if (args.length > 0) {
             Application.launch(args);
