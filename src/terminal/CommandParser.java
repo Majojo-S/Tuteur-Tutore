@@ -35,6 +35,12 @@ public class CommandParser {
                 if (keyWords[1].equals("tutors")) c = new ListTutorsCommand();
                 if (keyWords[1].equals("tutored")) c = new ListTutoredCommand();
                 break;
+            case "tutor":
+                if (keyWords[1].equals("add")) c = new CreateTutorCommand();
+                break;
+            case "tutored":
+                if (keyWords[1].equals("add")) c = new CreateTutoredCommand();
+                break;
             case "graph":
                 c = new GraphCommand();
                 break;
