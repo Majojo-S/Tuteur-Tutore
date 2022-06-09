@@ -44,7 +44,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="444.0" maxWidth="656.0" minHeight="373.0" minWidth="656.0" prefHeight="403.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.Controller">
+<VBox alignment="CENTER" maxHeight="444.0" maxWidth="656.0" minHeight="373.0" minWidth="656.0" prefHeight="403.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sae.controller.Controller">
   <children>
       <MenuBar>
         <menus>
