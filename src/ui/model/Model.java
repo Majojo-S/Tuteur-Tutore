@@ -41,6 +41,10 @@ public class Model {
         return res;
     }
 
+    public void addTutor(Tutor t_tutor) {
+        tutors.add(t_tutor);
+    }
+
     public void removeTutor(String firstName, String lastName) {
         tutors.remove(new Tutor(firstName, lastName));
     }
@@ -96,5 +100,9 @@ public class Model {
 
     public void addTutored(List<Tutored> tutored) {
         this.tutored.addAll(tutored);
+    }
+
+    public void addTutored(Tutored t_tutored) {
+        tutored.add(t_tutored);
     }
 }
