@@ -22,7 +22,7 @@ You can use Mercurial to clone the repository or you can browse the
 source using a web browser. The root directory of the GStreamer source
 code is here:
 
-   rt/modules/javafx.media/src/main/native/gstreamer/gstreamer-lite/
+   rt/modules/javafx.media/src/sae.main/native/gstreamer/gstreamer-lite/
 </pre>
 
 ### LGPL 2.1
@@ -297,7 +297,7 @@ distribute the object code for the work under the terms of Section 6.
 Any executables containing that work also fall under Section 6,
 whether or not they are linked directly with the Library itself.
 
-  6. As an exception to the Sections above, you may also combine or
+  6. As an sae.exception to the Sections above, you may also combine or
 link a "work that uses the Library" with the Library to produce a
 work containing portions of the Library, and distribute that work
 under terms of your choice, provided that the terms permit
@@ -346,7 +346,7 @@ of these things:
 
   For an executable, the required form of the "work that uses the
 Library" must include any data and utility programs needed for
-reproducing the executable from it.  However, as a special exception,
+reproducing the executable from it.  However, as a special sae.exception,
 the materials to be distributed need not include anything that is
 normally distributed (in either source or binary form) with the major
 components (compiler, kernel, and so on) of the operating system on

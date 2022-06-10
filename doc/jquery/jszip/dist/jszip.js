@@ -1420,7 +1420,7 @@ var fileAdd = function(name, data, originalOptions) {
     var object = new ZipObject(name, zipObjectContent, o);
     this.files[name] = object;
     /*
-    TODO: we can't throw an exception because we have async promises
+    TODO: we can't throw an sae.exception because we have async promises
     (we can have a promise of a Date() for example) but returning a
     promise is useless because file(name, data) returns the JSZip
     object for chaining. Should we break that to allow the user
@@ -2005,9 +2005,9 @@ var NodeBufferReader = require('./NodeBufferReader');
 var Uint8ArrayReader = require('./Uint8ArrayReader');
 
 /**
- * Create a reader adapted to the data.
+ * Create a sae.reader adapted to the data.
  * @param {String|ArrayBuffer|Uint8Array|Buffer} data the data to read.
- * @return {DataReader} the data reader.
+ * @return {DataReader} the data sae.reader.
  */
 module.exports = function (data) {
     var type = utils.getTypeOf(data);
@@ -3377,7 +3377,7 @@ exports.getTypeOf = function(input) {
 };
 
 /**
- * Throw an exception if the type is not supported.
+ * Throw an sae.exception if the type is not supported.
  * @param {String} type the type to check.
  * @throws {Error} an Error if the browser doesn't support the requested type.
  */
@@ -3512,7 +3512,7 @@ exports.prepareContent = function(name, inputData, isBinary, isOptimizedBinarySt
 
 },{"./base64":1,"./external":6,"./nodejsUtils":14,"./support":30,"set-immediate-shim":54}],33:[function(require,module,exports){
 'use strict';
-var readerFor = require('./reader/readerFor');
+var readerFor = require('./sae.reader/readerFor');
 var utils = require('./utils');
 var sig = require('./signature');
 var ZipEntry = require('./zipEntry');
@@ -3530,7 +3530,7 @@ function ZipEntries(loadOptions) {
 }
 ZipEntries.prototype = {
     /**
-     * Check that the reader is on the specified signature.
+     * Check that the sae.reader is on the specified signature.
      * @param {string} expectedSignature the expected signature.
      * @throws {Error} if it is an other signature.
      */
@@ -3586,8 +3586,8 @@ ZipEntries.prototype = {
     readBlockZip64EndOfCentral: function() {
         this.zip64EndOfCentralSize = this.reader.readInt(8);
         this.reader.skip(4);
-        // this.versionMadeBy = this.reader.readString(2);
-        // this.versionNeeded = this.reader.readInt(2);
+        // this.versionMadeBy = this.sae.reader.readString(2);
+        // this.versionNeeded = this.sae.reader.readInt(2);
         this.diskNumber = this.reader.readInt(4);
         this.diskWithCentralDirStart = this.reader.readInt(4);
         this.centralDirRecordsOnThisDisk = this.reader.readInt(8);
@@ -3749,7 +3749,7 @@ ZipEntries.prototype = {
                 // The offsets seem wrong, but we have something at the specified offset.
                 // So… we keep it.
             } else {
-                // the offset is wrong, update the "zero" of the reader
+                // the offset is wrong, update the "zero" of the sae.reader
                 // this happens if data has been prepended (crx files for example)
                 this.reader.zero = extraBytes;
             }
@@ -3776,7 +3776,7 @@ module.exports = ZipEntries;
 
 },{"./reader/readerFor":22,"./signature":23,"./support":30,"./utf8":31,"./utils":32,"./zipEntry":34}],34:[function(require,module,exports){
 'use strict';
-var readerFor = require('./reader/readerFor');
+var readerFor = require('./sae.reader/readerFor');
 var utils = require('./utils');
 var CompressedObject = require('./compressedObject');
 var crc32fn = require('./crc32');
@@ -3834,7 +3834,7 @@ ZipEntry.prototype = {
     },
     /**
      * Read the local part of a zip file and add the info in this object.
-     * @param {DataReader} reader the reader to use.
+     * @param {DataReader} reader the sae.reader to use.
      */
     readLocalPart: function(reader) {
         var compression, localExtraFieldsLength;
@@ -3875,12 +3875,12 @@ ZipEntry.prototype = {
 
     /**
      * Read the central part of a zip file and add the info in this object.
-     * @param {DataReader} reader the reader to use.
+     * @param {DataReader} reader the sae.reader to use.
      */
     readCentralPart: function(reader) {
         this.versionMadeBy = reader.readInt(2);
         reader.skip(2);
-        // this.versionNeeded = reader.readInt(2);
+        // this.versionNeeded = sae.reader.readInt(2);
         this.bitFlag = reader.readInt(2);
         this.compressionMethod = reader.readString(2);
         this.date = reader.readDate();
@@ -3937,7 +3937,7 @@ ZipEntry.prototype = {
 
     /**
      * Parse the ZIP64 extra field and merge the info in the current ZipEntry.
-     * @param {DataReader} reader the reader to use.
+     * @param {DataReader} reader the sae.reader to use.
      */
     parseZIP64ExtraField: function(reader) {
 
@@ -3945,7 +3945,7 @@ ZipEntry.prototype = {
             return;
         }
 
-        // should be something, preparing the extra reader
+        // should be something, preparing the extra sae.reader
         var extraReader = readerFor(this.extraFields[0x0001].value);
 
         // I really hope that these 64bits integer can fit in 32 bits integer, because js
@@ -3965,7 +3965,7 @@ ZipEntry.prototype = {
     },
     /**
      * Read the central part of a zip file and add the info in this object.
-     * @param {DataReader} reader the reader to use.
+     * @param {DataReader} reader the sae.reader to use.
      */
     readExtraFields: function(reader) {
         var end = reader.index + this.extraFieldsLength,
@@ -4644,7 +4644,7 @@ var Z_DEFLATED  = 8;
  * new Deflate(options)
  * - options (Object): zlib deflate options.
  *
- * Creates new deflator instance with specified params. Throws exception
+ * Creates new deflator instance with specified params. Throws sae.exception
  * on bad params. Supported options:
  *
  * - `level`
@@ -5027,7 +5027,7 @@ var toString = Object.prototype.toString;
  * new Inflate(options)
  * - options (Object): zlib inflate options.
  *
- * Creates new inflator instance with specified params. Throws exception
+ * Creates new inflator instance with specified params. Throws sae.exception
  * on bad params. Supported options:
  *
  * - `windowBits`

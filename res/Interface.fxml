@@ -44,7 +44,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="444.0" maxWidth="656.0" minHeight="373.0" minWidth="656.0" prefHeight="403.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.Controller">
+<VBox alignment="CENTER" maxHeight="444.0" maxWidth="656.0" minHeight="373.0" minWidth="656.0" prefHeight="403.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sae.controller.Controller">
   <children>
       <MenuBar>
         <menus>
@@ -71,7 +71,6 @@
             <Label layoutX="293.0" layoutY="14.0" text="Ressource :" textAlignment="CENTER" />
             <Label layoutX="314.0" layoutY="30.0" text="Algo" textAlignment="CENTER" />
             <Button fx:id="notAffectedButton" layoutX="260.0" layoutY="98.0" mnemonicParsing="false" text="Etudiant non affecté" />
-            <Button fx:id="affectTutorButton" layoutX="256.0" layoutY="143.0" mnemonicParsing="false" text="Affecter tuteur/tutoré" />
             <Slider fx:id="resLimitSlider" blockIncrement="1.0" layoutX="218.0" layoutY="337.0" majorTickUnit="30.0" max="30.0" minorTickCount="29" onValueChange="#setResLimit" prefHeight="33.0" prefWidth="216.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
             <Label layoutX="216.0" layoutY="305.0" text="Nombre d'étudiant par ressource :" />
             <Label fx:id="resLimitLabel" layoutX="301.0" layoutY="321.0" text="Limit" />

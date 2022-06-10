@@ -149,7 +149,7 @@ The source code for a work means the preferred form of the work for making
 modifications to it.  For an executable work, complete source code means all
 the source code for all modules it contains, plus any associated interface
 definition files, plus the scripts used to control compilation and installation
-of the executable.  However, as a special exception, the source code
+of the executable.  However, as a special sae.exception, the source code
 distributed need not include anything that is normally distributed (in either
 source or binary form) with the major components (compiler, kernel, and so on)
 of the operating system on which the executable runs, unless that component
@@ -326,22 +326,22 @@ License instead of this License.
 "CLASSPATH" EXCEPTION TO THE GPL
 
 Certain source files distributed by Oracle America and/or its affiliates are
-subject to the following clarification and special exception to the GPL, but
+subject to the following clarification and special sae.exception to the GPL, but
 only where Oracle has expressly included in the particular source file's header
 the words "Oracle designates this particular file as subject to the "Classpath"
-exception as provided by Oracle in the LICENSE file that accompanied this code."
+sae.exception as provided by Oracle in the LICENSE file that accompanied this code."
 
     Linking this library statically or dynamically with other modules is making
     a combined work based on this library.  Thus, the terms and conditions of
     the GNU General Public License cover the whole combination.
 
-    As a special exception, the copyright holders of this library give you
+    As a special sae.exception, the copyright holders of this library give you
     permission to link this library with independent modules to produce an
     executable, regardless of the license terms of these independent modules,
     and to copy and distribute the resulting executable under terms of your
     choice, provided that you also meet, for each linked independent module,
     the terms and conditions of the license of that module.  An independent
     module is a module which is not derived from or based on this library.  If
-    you modify this library, you may extend this exception to your version of
+    you modify this library, you may extend this sae.exception to your version of
     the library, but you are not obligated to do so.  If you do not wish to do
-    so, delete this exception statement from your version.
+    so, delete this sae.exception statement from your version.
