@@ -1,5 +1,6 @@
 package sae.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import sae.model.Model;
 import sae.reader.StudentCSVReader;
@@ -50,6 +52,8 @@ public final class Controller {
 	@FXML
 	private Button notAffectedButton;
 	@FXML
+	private Button affectTutorButton;
+	@FXML
 	private Button AffectTutor;
 	@FXML
 	private Slider resLimitSlider;
@@ -72,8 +76,8 @@ public final class Controller {
 		m.addTutor("non", "non");
 		m.addTutored("oui", "oui");
 		m.addTutored("ha", "ha");
-		lpTutor.set(FXCollections.observableArrayList(m.getTutors()));
-		lpTutored.set(FXCollections.observableArrayList(m.getTutored()));
+		lpTutor.set(FXCollections.observableList(m.getTutors()));
+		lpTutored.set(FXCollections.observableList(m.getTutored()));
 		listTutor.itemsProperty().bind(lpTutor);
 		listTutored.itemsProperty().bind(lpTutored);
 	}
@@ -95,11 +99,41 @@ public final class Controller {
 
 	public void removeTutored(ActionEvent event) {
 		m.removeTutored(listTutored.getSelectionModel().getSelectedItem());
-		lpTutored.set(FXCollections.observableArrayList(m.getTutored()));
+		lpTutored.set(FXCollections.observableList(m.getTutored()));
 	}
 
 	public void showNotAffected(ActionEvent event) {
+		System.out.println(m.getTutors().size() + " " + m.getTutored().size());
+		List<Tutor> tmpTutors = new ArrayList<>();
+		List<Tutored> tmpTutored = new ArrayList<>();
+		List<Tutored> tmp = new ArrayList<>();
+		for (Tutored tutored : m.getTutored()) {
+			boolean affected = false;
+			for (Tutor tutor : m.getTutors()) {
+				if (!tutor.hasTutored() && !tmpTutors.contains(tutor)) {
+					tmpTutors.add(tutor);
+				}
+				affected = tutor.getTutored().contains(tutored);
+				System.out.println(affected);
+			}
+			if (affected)
+				tmp.add(tutored);
+		}
+		for (Tutored tutored : m.getTutored()) {
+			if (!tmp.contains(tutored)) {
+				tmpTutored.add(tutored);
+			}
+		}
+		if (tmpTutors.isEmpty() && tmpTutored.isEmpty()) {
+			lpTutor.set(FXCollections.observableList(m.getTutors()));
+			lpTutored.set(FXCollections.observableList(m.getTutored()));
+		} else {
+			lpTutor.set(FXCollections.observableList(tmpTutors));
+			lpTutored.set(FXCollections.observableList(tmpTutored));
+		}
 
+		System.out.println(m.getTutors().size() + " " + m.getTutored().size());
+		System.out.println(tmpTutors.size() + " " + tmpTutored.size());
 	}
 
 	public void affect(ActionEvent event) {
@@ -113,9 +147,12 @@ public final class Controller {
 
 	public void loadCSV(ActionEvent event) {
 		FileChooser fc = new FileChooser();
+		File f = fc.showOpenDialog(addTutor.getScene().getWindow());
+		if(f == null) 
+			return;
 		List<Tutor> tutors = new ArrayList<Tutor>();
 		List<Tutored> tutored = new ArrayList<Tutored>();
-		for (Student stu : StudentCSVReader.read(fc.showOpenDialog(addTutor.getScene().getWindow()))) {
+		for (Student stu : StudentCSVReader.read(f)) {
 			if (stu.getClass().equals(Tutor.class))
 				tutors.add((Tutor) stu);
 			else
@@ -123,8 +160,8 @@ public final class Controller {
 		}
 		m.addTutor(tutors);
 		m.addTutored(tutored);
-		lpTutor.set(FXCollections.observableArrayList(m.getTutors()));
-		lpTutored.set(FXCollections.observableArrayList(m.getTutored()));
+		lpTutor.set(FXCollections.observableList(m.getTutors()));
+		lpTutored.set(FXCollections.observableList(m.getTutored()));
 	}
 
 	public void searchStudent(KeyEvent e) {
@@ -132,7 +169,8 @@ public final class Controller {
 		List<Tutored> tmpTutored = new ArrayList<>();
 		lpTutor.clear();
 		lpTutored.clear();
-		String parseSearch = searchStudentField.getText().equals("") ? "" : searchStudentField.getText().substring(0, searchStudentField.getText().length());
+		String parseSearch = searchStudentField.getText().equals("") ? ""
+				: searchStudentField.getText().substring(0, searchStudentField.getText().length());
 		for (Tutor tutor : m.getTutors()) {
 			if (tutor.getLastName().equals(parseSearch)) {
 				tmpTutors.add(tutor);
@@ -144,12 +182,20 @@ public final class Controller {
 			}
 		}
 		if (parseSearch.equals("")) {
-			lpTutor.set(FXCollections.observableArrayList(m.getTutors()));
-			lpTutored.set(FXCollections.observableArrayList(m.getTutored()));
+			lpTutor.set(FXCollections.observableList(m.getTutors()));
+			lpTutored.set(FXCollections.observableList(m.getTutored()));
 		} else {
-			lpTutor.set(FXCollections.observableArrayList(tmpTutors));
-			lpTutored.set(FXCollections.observableArrayList(tmpTutored));
+			System.out.println(m.getTutors().size() + " " + m.getTutored().size());
+			lpTutor.set(FXCollections.observableList(tmpTutors));
+			lpTutored.set(FXCollections.observableList(tmpTutored));
+			System.out.println(m.getTutors().size() + " " + m.getTutored().size());
 		}
+	}
+
+	public void showTutored(MouseEvent e) {
+		Tutor tmp = listTutor.getSelectionModel().getSelectedItem();
+		lpTutored.clear();
+		lpTutored.set(FXCollections.observableList(tmp.getTutored()));
 	}
 
 }

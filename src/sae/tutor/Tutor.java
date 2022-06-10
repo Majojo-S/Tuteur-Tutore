@@ -114,4 +114,8 @@ public class Tutor extends Student {
     public String toString() {
         return "Tutor: " + getFirstName() + " " + getLastName();
     }
+
+	public boolean hasTutored() {
+		return !tutored.isEmpty();
+	}
 }

@@ -32,7 +32,6 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -42,40 +41,46 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="444.0" maxWidth="656.0" minHeight="373.0" minWidth="656.0" prefHeight="403.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sae.controller.Controller">
-  <children>
-      <MenuBar>
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem fx:id="loadCSV" mnemonicParsing="false" onAction="#loadCSV" text="Charger CSV" />
-            </items>
-          </Menu>
-        </menus>
-         <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </MenuBar>
-    <AnchorPane maxHeight="383.0" maxWidth="656.0" minHeight="383.0" minWidth="656.0" prefHeight="383.0" prefWidth="656.0" VBox.vgrow="ALWAYS">
-      <children>
-            <ListView fx:id="listTutor" layoutX="35.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0" />
-            <ListView fx:id="listTutored" layoutX="427.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0" />
-            <Label layoutX="35.0" layoutY="50.0" text="Tuteur :" />
-            <Label layoutX="427.0" layoutY="46.0" text="Tutorés :" />
-            <Button fx:id="addTutor" layoutX="35.0" layoutY="281.0" mnemonicParsing="false" onAction="#addTutor" text="Ajouter" />
-            <Button fx:id="removeTutor" layoutX="104.0" layoutY="281.0" mnemonicParsing="false" onAction="#removeTutor" text="Retirer" />
-            <Button fx:id="addTutored" layoutX="427.0" layoutY="272.0" mnemonicParsing="false" text="Ajouter" />
-            <Button fx:id="removeTutored" layoutX="496.0" layoutY="272.0" mnemonicParsing="false" onAction="#removeTutored" text="Retirer" />
-            <Label layoutX="293.0" layoutY="14.0" text="Ressource :" textAlignment="CENTER" />
-            <Label layoutX="314.0" layoutY="30.0" text="Algo" textAlignment="CENTER" />
-            <Button fx:id="notAffectedButton" layoutX="260.0" layoutY="98.0" mnemonicParsing="false" text="Etudiant non affecté" />
-            <Slider fx:id="resLimitSlider" blockIncrement="1.0" layoutX="218.0" layoutY="337.0" majorTickUnit="30.0" max="30.0" minorTickCount="29" onValueChange="#setResLimit" prefHeight="33.0" prefWidth="216.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-            <Label layoutX="216.0" layoutY="305.0" text="Nombre d'étudiant par ressource :" />
-            <Label fx:id="resLimitLabel" layoutX="301.0" layoutY="321.0" text="Limit" />
-            <TextField fx:id="searchStudentField" layoutX="249.0" layoutY="187.0" onKeyReleased="#searchStudent" promptText="Rechercher un élève" />
-      </children>
-    </AnchorPane>
-  </children>
+
+<VBox prefHeight="409.0" prefWidth="657.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sae.controller.Controller">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <center>
+          <AnchorPane maxHeight="383.0" maxWidth="656.0" minHeight="383.0" minWidth="656.0" prefHeight="383.0" prefWidth="656.0" BorderPane.alignment="CENTER">
+            <children>
+                  <ListView fx:id="listTutor" layoutX="35.0" layoutY="71.0" onMouseClicked="#showTutored" prefHeight="200.0" prefWidth="200.0" />
+                  <ListView fx:id="listTutored" layoutX="427.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0" />
+                  <Label layoutX="35.0" layoutY="50.0" text="Tuteur :" />
+                  <Label layoutX="427.0" layoutY="46.0" text="Tutorés :" />
+                  <Button fx:id="addTutor" layoutX="35.0" layoutY="281.0" mnemonicParsing="false" onAction="#addTutor" text="Ajouter" />
+                  <Button fx:id="removeTutor" layoutX="104.0" layoutY="281.0" mnemonicParsing="false" onAction="#removeTutor" text="Retirer" />
+                  <Button fx:id="addTutored" layoutX="427.0" layoutY="272.0" mnemonicParsing="false" text="Ajouter" />
+                  <Button fx:id="removeTutored" layoutX="496.0" layoutY="272.0" mnemonicParsing="false" onAction="#removeTutored" text="Retirer" />
+                  <Label layoutX="293.0" layoutY="14.0" text="Ressource :" textAlignment="CENTER" />
+                  <Label layoutX="314.0" layoutY="30.0" text="Algo" textAlignment="CENTER" />
+                  <Button fx:id="notAffectedButton" layoutX="260.0" layoutY="98.0" mnemonicParsing="false" onAction="#showNotAffected" text="Etudiant non affecté" />
+                  <Button fx:id="affectTutorButton" layoutX="256.0" layoutY="143.0" mnemonicParsing="false" text="Affecter tuteur/tutoré" />
+                  <Slider fx:id="resLimitSlider" blockIncrement="1.0" layoutX="218.0" layoutY="337.0" majorTickUnit="30.0" max="30.0" minorTickCount="29" onValueChange="#setResLimit" prefHeight="33.0" prefWidth="216.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                  <Label layoutX="216.0" layoutY="305.0" text="Nombre d'étudiant par ressource :" />
+                  <Label fx:id="resLimitLabel" layoutX="301.0" layoutY="321.0" text="Limit" />
+                  <TextField fx:id="searchStudentField" layoutX="249.0" layoutY="187.0" onKeyReleased="#searchStudent" promptText="Rechercher un élève" />
+            </children>
+          </AnchorPane>
+         </center>
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem fx:id="loadCSV" mnemonicParsing="false" onAction="#loadCSV" text="Charger CSV" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+      </BorderPane>
+   </children>
 </VBox>
