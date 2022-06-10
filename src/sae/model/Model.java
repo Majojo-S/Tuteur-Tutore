@@ -101,7 +101,8 @@ public class Model {
         this.tutored.addAll(tutored);
     }
 
-    public void addTutored(Tutored t_tutored) {
-        tutored.add(t_tutored);
-    }
+	public void addTutored(Tutored student) {
+		tutored.add(student);
+		
+	}
 }

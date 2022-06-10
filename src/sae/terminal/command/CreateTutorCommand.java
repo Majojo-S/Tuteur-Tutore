@@ -19,7 +19,7 @@ public class CreateTutorCommand extends AbstractCommand implements ICommand {
 
         Tutor tutor = new Tutor(firstName, lastName, grade);
         model.addTutor(tutor);
-
+        sc.close();
         return false;
     }
 }

@@ -26,8 +26,6 @@ public class Popup {
 	private String lastName;
 	FXMLLoader loader;
 
-	
-	
 	public void display(Window parent, String title) {
 		File f = new File("res"+ File.separator +"AddStudent.fxml");
 		try {

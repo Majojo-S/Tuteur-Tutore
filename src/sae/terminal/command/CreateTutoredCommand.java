@@ -16,7 +16,7 @@ public class CreateTutoredCommand extends AbstractCommand implements ICommand {
 
         Tutored tutored = new Tutored(firstName, lastName);
         model.addTutored(tutored);
-
+        sc.close();
         return false;
     }
 }

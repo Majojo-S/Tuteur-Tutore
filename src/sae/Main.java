@@ -58,7 +58,7 @@ public class Main extends Application {
         GrapheNonOrienteValue<Student> graph = new GraphGenerator(tutorsAsStudent, tutoredAsStudent, Resource.ALGO).createGraph();
         TutoringGraph.setGraph(graph);
 
-        if (args.length > 0) {
+        if (args.length > -1) {
             Application.launch(args);
         } else {
             Shell.launch();
