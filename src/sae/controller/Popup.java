@@ -38,6 +38,7 @@ public class Popup {
 			stage.initOwner(parent);
 			stage.setScene(scene);
 			stage.showAndWait();
+			System.out.println(firstName+ " " + lastName);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

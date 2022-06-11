@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
@@ -40,13 +41,13 @@ public final class Controller {
 	@FXML
 	private ListView<Tutored> listTutored;
 	@FXML
-	private Button addTutor;
+	private Button addTutorButton;
 	@FXML
-	private Button removeTutor;
+	private Button removeTutorButton;
 	@FXML
-	private Button addTutored;
+	private Button addTutoredButton;
 	@FXML
-	private Button removeTutored;
+	private Button removeTutoredButton;
 	@FXML
 	private Button searchButton;
 	@FXML
@@ -54,7 +55,7 @@ public final class Controller {
 	@FXML
 	private Button affectTutorButton;
 	@FXML
-	private Button AffectTutor;
+	private Button showAllStudentButton;
 	@FXML
 	private Slider resLimitSlider;
 	@FXML
@@ -63,10 +64,23 @@ public final class Controller {
 	private TextField searchStudentField;
 	@FXML
 	private MenuItem loadCSV;
+	@FXML
+	private ChoiceBox<Integer> studentLvlChoiceBox;
+	@FXML
+	private TextField tutorFirstNameField;
+	@FXML
+	private TextField tutorLastNameField;
+	@FXML
+	private TextField tutoredLastNameField;
+	@FXML
+	private TextField tutoredFirstNameField;
 	private ListProperty<Tutor> lpTutor;
 	private ListProperty<Tutored> lpTutored;
 
 	public void initialize() {
+		studentLvlChoiceBox.getItems().add(2);
+		studentLvlChoiceBox.getItems().add(3);
+		studentLvlChoiceBox.setValue(2);
 		m = Model.getInstance();
 		resLimitLabel.setText("" + m.getLimit());
 		resLimitSlider.adjustValue((double) m.getLimit());
@@ -83,8 +97,12 @@ public final class Controller {
 	}
 
 	public void addTutor(ActionEvent event) {
-		Popup popup = new Popup();
-		popup.display(addTutor.getScene().getWindow(), "Add Tutor");
+		String firstName = tutorFirstNameField.getText();
+		String lastName = tutorLastNameField.getText();
+		int stuLvl = studentLvlChoiceBox.getValue();
+		Tutor tmp = new Tutor(firstName, lastName, stuLvl);
+		if(!firstName.equals("") && !lastName.equals(""))
+			m.addTutor(tmp);
 		lpTutor.set(FXCollections.observableArrayList(m.getTutors()));
 	}
 
@@ -94,7 +112,12 @@ public final class Controller {
 	}
 
 	public void addTutored(ActionEvent event) {
-
+		String firstName = tutoredFirstNameField.getText();
+		String lastName = tutoredLastNameField.getText();
+		Tutored tmp = new Tutored(firstName, lastName);
+		if(!firstName.equals("") && !lastName.equals(""))
+			m.addTutored(tmp);
+		lpTutored.set(FXCollections.observableArrayList(m.getTutored()));
 	}
 
 	public void removeTutored(ActionEvent event) {
@@ -137,7 +160,7 @@ public final class Controller {
 	}
 
 	public void affect(ActionEvent event) {
-
+		
 	}
 
 	public void setResLimit(Event event) {
@@ -147,15 +170,15 @@ public final class Controller {
 
 	public void loadCSV(ActionEvent event) {
 		FileChooser fc = new FileChooser();
-		File f = fc.showOpenDialog(addTutor.getScene().getWindow());
-		if(f == null) 
+		File f = fc.showOpenDialog(addTutorButton.getScene().getWindow());
+		if (f == null)
 			return;
 		List<Tutor> tutors = new ArrayList<Tutor>();
 		List<Tutored> tutored = new ArrayList<Tutored>();
 		for (Student stu : StudentCSVReader.read(f)) {
-			if (stu.getClass().equals(Tutor.class))
+			if (stu.getClass().equals(Tutor.class) && !(m.getTutors().contains(stu)))
 				tutors.add((Tutor) stu);
-			else
+			else if (stu.getClass().equals(Tutored.class) && !(m.getTutored().contains(stu)))
 				tutored.add((Tutored) stu);
 		}
 		m.addTutor(tutors);
@@ -167,8 +190,6 @@ public final class Controller {
 	public void searchStudent(KeyEvent e) {
 		List<Tutor> tmpTutors = new ArrayList<>();
 		List<Tutored> tmpTutored = new ArrayList<>();
-		lpTutor.clear();
-		lpTutored.clear();
 		String parseSearch = searchStudentField.getText().equals("") ? ""
 				: searchStudentField.getText().substring(0, searchStudentField.getText().length());
 		for (Tutor tutor : m.getTutors()) {
@@ -194,8 +215,14 @@ public final class Controller {
 
 	public void showTutored(MouseEvent e) {
 		Tutor tmp = listTutor.getSelectionModel().getSelectedItem();
-		lpTutored.clear();
-		lpTutored.set(FXCollections.observableList(tmp.getTutored()));
+		if (tmp != null) {
+			lpTutored.set(FXCollections.observableList(tmp.getTutored()));
+		}
 	}
 
+	public void showAllStudent(ActionEvent e) {
+		lpTutor.set(FXCollections.observableList(m.getTutors()));
+		lpTutored.set(FXCollections.observableList(m.getTutored()));
+	}
+	
 }
